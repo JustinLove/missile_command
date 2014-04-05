@@ -1,11 +1,27 @@
 # Missile Command
 
-Provides limited assistance for managingg nuculear launchers.
+Provides limited assistance for managing nuke launchers.
 
 ## Features
 
-- Rainbows
-- Unicorns
+Missile Command window implements Floating Framework, and can be repositioned.  It toggles in a similar manner to player/system windows.  (These features may have unwanted interactions.)
+
+When you select one (and only one) nuke launcher, it will be registered into the interface.
+
+- Hover over a launcher to show it in the alert PIP.
+- Check the box if it's ready to fire.  Sorry, the code can't tell you; use the hover to quickly check and update all you launchers.
+- Attack icon selects that launcher to fire.
+- "external site" button jumps to the launcher in the main view.
+
+The "Attack" button will select the first launcher which has it's ready checkbox set.
+
+After firing a nuke, it will be marked as unready, and the next ready launcher will be selected.
+
+### Limitations
+
+Pretty much everything related to nuke launcher status is invisible to the UI, so a lot is manual.
+
+The mod isn't attempting any state saving.  All launchers will be forgotten on crash, disconnect, refresh, or scene change (such as going to settings).
 
 ## Development
 

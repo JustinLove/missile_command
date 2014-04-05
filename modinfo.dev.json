@@ -4,7 +4,7 @@
   "category": ["in-game", "ui"],
   "context": "client",
   "date": "2014/04/04",
-  "description": "Provides limited assistance for managingg nuculear launchers.",
+  "description": "Provides limited assistance for managing nuke launchers.",
   "display_name": "Missile Command Dev",
   "enabled": true,
   "forum": null,
