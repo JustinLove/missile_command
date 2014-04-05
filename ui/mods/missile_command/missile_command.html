@@ -7,7 +7,7 @@
     <ul data-bind="foreach: registry">
       <li data-bind="event: {mouseenter: show}">
         <span class="missile_id" data-bind="text: id">id</span>
-        <input type="checkbox" data-bind="value: ready">
+        <input type="checkbox" data-bind="checked: ready">
         <a class="missile_command_attack" data-bind="click: select">
           <img src="coui://ui/main/game/live_game/img/command_bar/icons_command_attack.png">
         </a>

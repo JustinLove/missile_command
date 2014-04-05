@@ -9,6 +9,15 @@ define(['missile_command/missile_view_model'], function(missileViewModel) {
         api.select.captureGroup(id)
         registry.push(missileViewModel.clone(id))
       }
+    },
+    unready: function(ids) {
+      if (!ids || ids.length < 1) return
+
+      _.forEach(registry(), function(m) {
+        if (ids.indexOf(m.id) != -1) {
+          m.ready(false)
+        }
+      })
     }
   }
 })

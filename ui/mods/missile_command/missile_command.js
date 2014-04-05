@@ -7,6 +7,12 @@ define([
 
   var nuke_launcher = '/pa/units/land/nuke_launcher/nuke_launcher.json'
 
+  var checkCommand = function(command, selected) {
+    if (command == 'attack') {
+      registry.unready(selected)
+    }
+  }
+
   var originalSelection = handlers.selection
   handlers.selection = function(payload) {
     var si = payload.spec_ids
@@ -16,6 +22,20 @@ define([
       }
     }
     originalSelection(payload)
+  }
+
+  var originalUnitCommand = api.Holodeck.prototype.unitCommand
+  api.Holodeck.prototype.unitCommand = function(command, x, y, queue) {
+    var selected = model.selection().spec_ids[nuke_launcher]
+    return originalUnitCommand.apply(this, arguments).success(
+      function() {checkCommand(command, selected)})
+  }
+
+  var originalTargetCommand = api.unit.targetCommand
+  api.unit.targetCommand = function(command, target, queue) {
+    var selected = model.selection().spec_ids[nuke_launcher]
+    return originalTargetCommand.apply(this, arguments).success(
+      function() {checkCommand(command, selected)})
   }
 
   var viewModel = {
