@@ -17,6 +17,7 @@ define([
       console.log(this.id)
       api.select.recallGroup(this.id)
       api.camera.track(true)
+      api.camera.setZoom('surface')
     }
   }
 

@@ -1,8 +1,7 @@
 .missile_command {
   background: black;
   color: white;
-  font-size: 2vh;
   position: absolute;
-  top: 10vh;
-  left: 40vw;
+  top: 100px;
+  right: 70px;
 }
