@@ -1,9 +1,16 @@
-define([], function() {
+define(['missile_command/preview'], function(preview) {
+
   return {
     clone: function(id) {
       var missile = Object.create(this)
       missile.id = id
       return missile
+    },
+    show: function() {
+      preview.show(this)
+    },
+    hide: function() {
+      preview.hide()
     },
     select: function() {
       console.log(this.id)

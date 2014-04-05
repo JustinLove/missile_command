@@ -1,7 +1,7 @@
 <div class="missile_command">
   <h2>Missile Command</h2>
   <ul data-bind="foreach: registry">
-    <li data-bind="click: select">
+    <li data-bind="click: select, event: {mouseenter: show, mouseleave: hide}">
       <span class="missle-id" data-bind="text: id">id</span>
     </li>
   </ul>
