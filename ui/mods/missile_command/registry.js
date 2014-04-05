@@ -1,0 +1,14 @@
+define(['missile_command/missile_view_model'], function(missileViewModel) {
+  var registry = ko.observableArray()
+
+  return {
+    registry: registry,
+    register: function(id) {
+      if (!_.find(registry(), function(m) {return m.id == id})) {
+        console.log('unknown', id)
+        api.select.captureGroup(id)
+        registry.push(missileViewModel.clone(id))
+      }
+    }
+  }
+})
