@@ -13,7 +13,9 @@ define(['missile_command/preview'], function(preview) {
       preview.hide()
     },
     select: function() {
-      console.log(this.id)
+      api.select.recallGroup(this.id)
+    },
+    jump: function() {
       api.select.recallGroup(this.id)
       api.camera.track(true)
       api.camera.setZoom('surface')

@@ -8,7 +8,7 @@ define([], function() {
       _.delay(function() {
         var focused = api.Holodeck.focused;
         model.preview.focus();
-        missile.select()
+        missile.jump()
         if (focused) focused.focus();
       }, 30);
     },
