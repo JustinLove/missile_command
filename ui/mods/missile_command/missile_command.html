@@ -6,7 +6,8 @@
   <div class="missile_command_cont" data-bind="visible: open">
     <ul data-bind="foreach: registry">
       <li data-bind="click: select, event: {mouseenter: show, mouseleave: hide}">
-        <span class="missle-id" data-bind="text: id">id</span>
+        <span class="missile_id" data-bind="text: id">id</span>
+        <i class="missile_command_jump ui-icon ui-icon-extlink" data-bind="click: jump">show</i>
       </li>
     </ul>
   </div>

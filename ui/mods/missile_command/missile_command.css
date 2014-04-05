@@ -36,3 +36,17 @@
   overflow-y: auto;
   overflow-x: visible;
 }
+
+.missile_command li {
+  position: relative;
+}
+
+.missile_command_jump {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.missile_command_jump:hover {
+  background-color: #088;
+}
