@@ -5,8 +5,12 @@
   </div>
   <div class="missile_command_cont" data-bind="visible: open, event: {mouseleave: hidePreview}">
     <ul data-bind="foreach: registry">
-      <li data-bind="click: select, event: {mouseenter: show}">
+      <li data-bind="event: {mouseenter: show}">
         <span class="missile_id" data-bind="text: id">id</span>
+        <input type="checkbox" data-bind="value: ready">
+        <a class="missile_command_attack" data-bind="click: select">
+          <img src="coui://ui/main/game/live_game/img/command_bar/icons_command_attack.png">
+        </a>
         <i class="missile_command_jump ui-icon ui-icon-extlink" data-bind="click: jump">show</i>
       </li>
     </ul>

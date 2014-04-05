@@ -1,6 +1,7 @@
 define(['missile_command/preview'], function(preview) {
 
   return {
+    ready: ko.observable(false),
     clone: function(id) {
       var missile = Object.create(this)
       missile.id = id

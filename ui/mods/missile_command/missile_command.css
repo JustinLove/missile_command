@@ -47,6 +47,30 @@
   top: 0;
 }
 
+.missile_command_attack {
+  position: absolute;
+  right: 16px;
+  width: 40px;
+  height: 20px;
+  border: solid #444 1px;
+}
+
+.missile_command_attack:hover {
+  background-color: #088;
+  border-color: #0ff;
+}
+
+.missile_command_attack img {
+  margin-left: 10px;
+  width: 20px;
+  height: 20px;
+}
+
+.missile_command_jump {
+  border: solid black 1px;
+}
+
 .missile_command_jump:hover {
   background-color: #088;
+  border-color: #0ff;
 }
