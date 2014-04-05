@@ -18,6 +18,12 @@ define(['missile_command/missile_view_model'], function(missileViewModel) {
           m.ready(false)
         }
       })
+    },
+    nextReady: function() {
+      var m = _.find(registry(), function(m) {return m.ready()})
+      console.log(m.id, m.ready())
+      if (m && m.ready()) m.select()
+      return m
     }
   }
 })

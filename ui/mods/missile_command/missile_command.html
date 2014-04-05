@@ -4,6 +4,7 @@
     <h3>Missile Command</h3>
   </div>
   <div class="missile_command_cont" data-bind="visible: open, event: {mouseleave: hidePreview}">
+    <input type="button" class="btn_commit"  data-bind="click: nextReady" value="ATTACK"/>
     <ul data-bind="foreach: registry">
       <li data-bind="event: {mouseenter: show}">
         <span class="missile_id" data-bind="text: id">id</span>

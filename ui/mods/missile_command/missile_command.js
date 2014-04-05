@@ -8,8 +8,9 @@ define([
   var nuke_launcher = '/pa/units/land/nuke_launcher/nuke_launcher.json'
 
   var checkCommand = function(command, selected) {
-    if (command == 'attack') {
+    if (command == 'attack' && selected) {
       registry.unready(selected)
+      registry.nextReady()
     }
   }
 
@@ -42,7 +43,8 @@ define([
     registry: registry.registry,
     open: ko.observable(true),
     toggle: function() { this.open(!this.open()) },
-    hidePreview: preview.hide
+    hidePreview: preview.hide,
+    nextReady: registry.nextReady
   }
 
   return {
