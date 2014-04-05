@@ -18,7 +18,9 @@ define([
   }
 
   var viewModel = {
-    registry: registry.registry
+    registry: registry.registry,
+    open: ko.observable(true),
+    toggle: function() { this.open(!this.open()) }
   }
 
   return {
