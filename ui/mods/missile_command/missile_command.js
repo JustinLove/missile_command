@@ -14,16 +14,21 @@ define([
     }
   }
 
-  var originalSelection = handlers.selection
-  handlers.selection = function(payload) {
+  model.selection.subscribe(function(payload) {
+    if (!payload) {
+      registry.showSelected([])
+      return
+    }
+
     var si = payload.spec_ids
     if (Object.keys(si).length == 1) {
       if (si[nuke_launcher] && si[nuke_launcher].length == 1) {
         registry.register(si[nuke_launcher][0])
       }
     }
-    originalSelection(payload)
-  }
+
+    registry.showSelected(si[nuke_launcher])
+  })
 
   var originalUnitCommand = api.Holodeck.prototype.unitCommand
   api.Holodeck.prototype.unitCommand = function(command, x, y, queue) {

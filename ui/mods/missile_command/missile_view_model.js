@@ -5,6 +5,7 @@ define(['missile_command/preview'], function(preview) {
       var missile = Object.create(this)
       missile.id = id
       missile.ready = ko.observable(false)
+      missile.selected = ko.observable(true)
       return missile
     },
     show: function() {

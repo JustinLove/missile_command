@@ -21,9 +21,15 @@ define(['missile_command/missile_view_model'], function(missileViewModel) {
     },
     nextReady: function() {
       var m = _.find(registry(), function(m) {return m.ready()})
-      console.log(m.id, m.ready())
       if (m && m.ready()) m.select()
       return m
-    }
+    },
+    showSelected: function(ids) {
+      ids = ids || []
+
+      _.forEach(registry(), function(m) {
+        m.selected(ids.indexOf(m.id) != -1)
+      })
+    },
   }
 })
