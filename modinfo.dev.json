@@ -7,7 +7,7 @@
   "description": "Provides limited assistance for managing nuke launchers.",
   "display_name": "Missile Command Dev",
   "enabled": true,
-  "forum": null,
+  "forum": "https://forums.uberent.com/threads/wip-missile-command.58542/",
   "id": "missile_command",
   "identifier": "com.wondible.pa.missile_command",
   "priority": 100,
@@ -20,6 +20,6 @@
     ]
   },
   "signature": "not yet implemented",
-  "version": "0.0.0"
+  "version": "0.1.0"
 }
 
