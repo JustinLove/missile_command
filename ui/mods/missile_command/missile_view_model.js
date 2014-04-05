@@ -7,13 +7,16 @@ define(['missile_command/preview'], function(preview) {
       return missile
     },
     show: function() {
-      preview.show(this)
+      if (model.mode() != 'command_attack') {
+        preview.show(this)
+      }
     },
     hide: function() {
       preview.hide()
     },
     select: function() {
       api.select.recallGroup(this.id)
+      model.setCommandIndex(1)
     },
     jump: function() {
       api.select.recallGroup(this.id)
