@@ -31,4 +31,8 @@
 
 .missile_command ul {
   margin-bottom: -16px;
+
+  max-height: 80vh;
+  overflow-y: auto;
+  overflow-x: visible;
 }
