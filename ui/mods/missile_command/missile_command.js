@@ -1,7 +1,8 @@
 define([
   'missile_command/registry',
+  'missile_command/preview',
   'text!missile_command/missile_command.html'
-], function(registry, html) {
+], function(registry, preview, html) {
   "use strict";
 
   var nuke_launcher = '/pa/units/land/nuke_launcher/nuke_launcher.json'
@@ -20,7 +21,8 @@ define([
   var viewModel = {
     registry: registry.registry,
     open: ko.observable(true),
-    toggle: function() { this.open(!this.open()) }
+    toggle: function() { this.open(!this.open()) },
+    hidePreview: preview.hide
   }
 
   return {
