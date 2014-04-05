@@ -11,7 +11,7 @@
   "id": "missile_command",
   "identifier": "com.wondible.pa.missile_command",
   "priority": 100,
-  "requires": [],
+  "requires": [ "rFloatFrame" ],
   "scenes": {
     "live_game": [
       "coui://ui/mods/missile_command/require.js",

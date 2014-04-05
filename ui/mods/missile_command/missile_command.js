@@ -23,9 +23,10 @@ define([
 
   return {
     ready: function() {
-      var container = $(html)
-      container.appendTo('body')
-      ko.applyBindings(viewModel, container[0])
+      createFloatingFrame('missile_command_frame', 300, 40, {'offset': 'leftCenter', 'left': 0});
+      var $container = $('#missile_command_frame_content')
+      $(html).appendTo($container)
+      ko.applyBindings(viewModel, $container[0])
     }
   }
 })
