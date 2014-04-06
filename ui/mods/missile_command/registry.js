@@ -34,6 +34,11 @@ define(['missile_command/missile_view_model'], function(missileViewModel) {
         registry.push(missileViewModel.clone(id))
       }
     },
+    created: function(id, target) {
+    },
+    destroyed: function(id) {
+      registry.remove(function(m) {return m.id == id})
+    },
     unready: function(ids) {
       if (!ids || ids.length < 1) return
 

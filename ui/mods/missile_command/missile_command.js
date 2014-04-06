@@ -45,6 +45,26 @@ define([
       function() {checkCommand(command, selected)})
   }
 
+
+  var settings = alertsManager.makeEmptyFilterSettings();
+  //settings.selectedTypes[alertsManager.WATCH_TYPES.CREATED] = ['Nuke'];
+  settings.selectedTypes[alertsManager.WATCH_TYPES.DESTROYED] = ['Nuke'];
+
+  alertsManager.addFilteredListener(function(payload) {
+    //console.log(payload);
+    payload.list.forEach(function(alert) {
+      if (alert.watch_type == alertsManager.WATCH_TYPES.CREATED) {
+        registry.created(alert.id, {location: alert.location, planet_id: alert.planet_id})
+      } else if (alert.watch_type == alertsManager.WATCH_TYPES.DESTROYED) {
+        registry.destroyed(alert.id)
+      }
+    })
+  }, settings);
+  //alertsManager.addListener(function(payload) {
+    //console.log('all');
+    //console.log(payload)
+  //})
+
   var viewModel = {
     visible: ko.computed(function() {
       return registry.registry().length > 0
