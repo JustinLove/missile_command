@@ -19,7 +19,11 @@ define(['missile_command/missile_view_model'], function(missileViewModel) {
       })
     },
     created: function(id, target) {
-      registry.push(missileViewModel.created(id, target))
+      // possible to click on building in progress, before it's created event
+      var launcher = _.find(registry(), function(m) {return m.id == id})
+      if (!launcher) {
+        registry.push(missileViewModel.created(id, target))
+      }
     },
     destroyed: function(id) {
       registry.remove(function(m) {return m.id == id})
