@@ -46,6 +46,9 @@ define([
   }
 
   var viewModel = {
+    visible: ko.computed(function() {
+      return registry.registry().length > 0
+    }),
     registry: registry.registry,
     open: ko.observable(true),
     toggle: function() { this.open(!this.open()) },
@@ -59,6 +62,7 @@ define([
       var $container = $('#missile_command_frame_content')
       $(html).appendTo($container)
       ko.applyBindings(viewModel, $container[0])
-    }
+    },
+    viewModel: viewModel
   }
 })
