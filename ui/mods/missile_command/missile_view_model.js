@@ -18,20 +18,34 @@ define(['missile_command/preview'], function(preview) {
   
 
   return {
-    clone: function(id, selected) {
+    clone: function(id) {
       var missile = Object.create(this)
       missile.id = id
-      missile.grouped = ko.observable(true)
+      missile.grouped = ko.observable(false)
       missile.ready = ko.observable(false)
-      missile.selected = ko.observable(selected)
+      missile.selected = ko.observable(false)
+      return missile
+    },
+    loaded: function(id) {
+      var missile = this.clone(id)
+      missile.grouped(true)
+      return missile
+    },
+    newSelection: function(id) {
+      var missile = this.clone(id)
+      missile.selected(true)
+      missile.captureGroup()
       return missile
     },
     created: function(id, target) {
-      var missile = this.clone(id, false)
+      var missile = this.clone(id)
       target.zoom = 'surface'
       missile.target = target
-      missile.grouped = ko.observable(false)
       return missile
+    },
+    captureGroup: function() {
+      this.grouped(true)
+      api.select.captureGroup(this.id)
     },
     show: function() {
       if (!model.mode().match('command_') && matchingSelection()) {

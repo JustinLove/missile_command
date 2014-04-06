@@ -7,7 +7,7 @@ define(['missile_command/missile_view_model'], function(missileViewModel) {
     if (storage()) {
       var ids = JSON.parse(storage())
       ids.forEach(function(id) {
-        registry.push(missileViewModel.clone(id))
+        registry.push(missileViewModel.loaded(id))
       })
     }
 
@@ -29,9 +29,11 @@ define(['missile_command/missile_view_model'], function(missileViewModel) {
   return {
     registry: registry,
     register: function(id) {
-      api.select.captureGroup(id)
-      if (!_.find(registry(), function(m) {return m.id == id})) {
-        registry.push(missileViewModel.clone(id))
+      var launcher = _.find(registry(), function(m) {return m.id == id})
+      if (launcher) {
+        launcher.captureGroup()
+      } else {
+        registry.push(missileViewModel.newSelection(id))
       }
     },
     created: function(id, target) {
