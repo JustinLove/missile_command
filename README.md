@@ -17,13 +17,13 @@ The "Attack" button will select the first launcher which has it's ready checkbox
 
 After firing a nuke, it will be marked as unready, and the next ready launcher will be selected.
 
+A launcher without an attack icon was discovered by a create alert. There isn't an API to create a group from an alert, so you need to use the jump button find it and click on it.
+
 ### Limitations
 
 Pretty much everything related to nuke launcher status is invisible to the UI, so a lot is manual.
 
 The mod has limited state state saving.  Launchers will be remembered over refresh and changing scenes, such as settings.  All launchers will be forgotten when the game exits for any reason.
-
-Launchers are never removed from the list.
 
 ## Development
 
