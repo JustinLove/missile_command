@@ -1,21 +1,31 @@
 define(['missile_command/missile_view_model'], function(missileViewModel) {
+  var serializeLauncher = function(launcher) {
+    return launcher.id
+  }
+
+  var deserializeLauncher = function(data) {
+    var missile = missileViewModel.clone(data)
+    missile.grouped(true)
+    return missile
+  }
+
   var enableStorage = function(lobbyId, registry) {
     var storage = ko.observable().extend({ session: 'missile_command_registered_'+lobbyId })
 
     if (storage()) {
-      var ids = JSON.parse(storage())
-      ids.forEach(function(id) {
-        registry.push(missileViewModel.loaded(id))
+      var ser = JSON.parse(storage())
+      ser.forEach(function(data) {
+        registry.push(deserializeLauncher(data))
       })
     }
 
     registry.subscribe(function(launchers) {
-      var ids = []
+      var ser = []
       launchers.forEach(function(m) {
-        ids.push(m.id)
+        ser.push(serializeLauncher(m))
       })
 
-      storage(JSON.stringify(ids))
+      storage(JSON.stringify(ser))
     })
   }
 

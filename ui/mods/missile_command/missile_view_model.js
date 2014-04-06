@@ -26,11 +26,6 @@ define(['missile_command/preview'], function(preview) {
       missile.selected = ko.observable(false)
       return missile
     },
-    loaded: function(id) {
-      var missile = this.clone(id)
-      missile.grouped(true)
-      return missile
-    },
     newSelection: function(id) {
       var missile = this.clone(id)
       missile.selected(true)
