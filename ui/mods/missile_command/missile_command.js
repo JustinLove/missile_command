@@ -1,9 +1,15 @@
 define([
   'missile_command/registry',
+  'missile_command/persist',
   'missile_command/preview',
   'text!missile_command/missile_command.html'
-], function(registry, preview, html) {
+], function(registry, persist, preview, html) {
   "use strict";
+
+  engine.asyncCall("ubernet.getGameWithPlayer").done(function (data) {
+    data = JSON.parse(data);
+    persist.enableStorage(data.LobbyID, registry.registry)
+  })
 
   var nuke_launcher = '/pa/units/land/nuke_launcher/nuke_launcher.json'
   //var nuke_launcher = '/pa/units/land/energy_plant/energy_plant.json'
