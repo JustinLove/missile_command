@@ -21,7 +21,9 @@ After firing a nuke, it will be marked as unready, and the next ready launcher w
 
 Pretty much everything related to nuke launcher status is invisible to the UI, so a lot is manual.
 
-The mod isn't attempting any state saving.  All launchers will be forgotten on crash, disconnect, refresh, or scene change (such as going to settings).
+The mod has limited state state saving.  Launchers will be remembered over refresh and changing scenes, such as settings.  All launchers will be forgotten when the game exits for any reason.
+
+Launchers are never removed from the list.
 
 ## Development
 
