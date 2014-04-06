@@ -6,6 +6,7 @@ define([
   "use strict";
 
   var nuke_launcher = '/pa/units/land/nuke_launcher/nuke_launcher.json'
+  //var nuke_launcher = '/pa/units/land/energy_plant/energy_plant.json'
 
   var checkCommand = function(command, selected) {
     if (command == 'attack' && selected) {

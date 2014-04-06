@@ -1,4 +1,21 @@
 define(['missile_command/preview'], function(preview) {
+  var nuke_launcher = '/pa/units/land/nuke_launcher/nuke_launcher.json'
+
+  var matchingSelection = function() {
+    var payload = model.selection()
+    if (!payload) {
+      return true
+    }
+
+    var si = payload.spec_ids
+    if (Object.keys(si).length == 1) {
+      if (si[nuke_launcher] && si[nuke_launcher].length == 1) {
+        return true
+      }
+    }
+    return false
+  }
+  
 
   return {
     clone: function(id) {
@@ -9,7 +26,7 @@ define(['missile_command/preview'], function(preview) {
       return missile
     },
     show: function() {
-      if (model.mode() != 'command_attack') {
+      if (!model.mode().match('command_') && matchingSelection()) {
         preview.show(this)
       }
     },
