@@ -29,8 +29,12 @@ define([
 
     var si = payload.spec_ids
     if (Object.keys(si).length == 1) {
-      if (si[nuke_launcher] && si[nuke_launcher].length == 1) {
-        registry.register(si[nuke_launcher][0])
+      if (si[nuke_launcher]) {
+        if (si[nuke_launcher].length == 1) {
+          registry.register(si[nuke_launcher][0])
+        } else {
+          registry.notice(si[nuke_launcher])
+        }
       }
     }
 

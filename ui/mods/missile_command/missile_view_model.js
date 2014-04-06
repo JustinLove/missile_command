@@ -24,6 +24,9 @@ define(['missile_command/preview'], function(preview) {
       missile.grouped = ko.observable(false)
       missile.ready = ko.observable(false)
       missile.selected = ko.observable(false)
+      missile.found = ko.computed(function() {
+        return missile.grouped() || missile.target
+      })
       return missile
     },
     newSelection: function(id) {
@@ -43,8 +46,12 @@ define(['missile_command/preview'], function(preview) {
       api.select.captureGroup(this.id)
     },
     show: function() {
-      if (!model.mode().match('command_') && matchingSelection()) {
-        preview.show(this)
+      if (this.found()) {
+        if (!model.mode().match('command_') && matchingSelection()) {
+          preview.show(this)
+        }
+      } else {
+        preview.hide()
       }
     },
     hide: function() {

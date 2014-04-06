@@ -11,6 +11,13 @@ define(['missile_command/missile_view_model'], function(missileViewModel) {
         registry.push(missileViewModel.newSelection(id))
       }
     },
+    notice: function(ids) {
+      ids.forEach(function(id) {
+        if (!_.find(registry(), function(m) {return m.id == id})) {
+          registry.push(missileViewModel.clone(id))
+        }
+      })
+    },
     created: function(id, target) {
       registry.push(missileViewModel.created(id, target))
     },
