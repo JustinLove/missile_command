@@ -6,10 +6,12 @@ define([
 ], function(registry, persist, preview, html) {
   "use strict";
 
-  engine.asyncCall("ubernet.getGameWithPlayer").done(function (data) {
-    data = JSON.parse(data);
-    persist.enableStorage(data.LobbyID, registry.registry)
-  })
+  var initiateStorage = function() {
+    engine.asyncCall("ubernet.getGameWithPlayer").done(function (data) {
+      data = JSON.parse(data);
+      persist.enableStorage(data.LobbyID, registry.registry)
+    })
+  }
 
   var nuke_launcher = '/pa/units/land/nuke_launcher/nuke_launcher.json'
   //var nuke_launcher = '/pa/units/land/energy_plant/energy_plant.json'
@@ -92,6 +94,9 @@ define([
       var $container = $('#missile_command_frame_content')
       $(html).appendTo($container)
       ko.applyBindings(viewModel, $container[0])
+
+      // engine.asyncCall doens't exist at load time
+      setTimeout(initiateStorage, 0)
     },
     viewModel: viewModel
   }
