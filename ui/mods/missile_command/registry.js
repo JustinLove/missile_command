@@ -29,12 +29,13 @@ define(['missile_command/missile_view_model'], function(missileViewModel) {
   return {
     registry: registry,
     register: function(id) {
+      api.select.captureGroup(id)
       if (!_.find(registry(), function(m) {return m.id == id})) {
-        api.select.captureGroup(id)
         registry.push(missileViewModel.clone(id))
       }
     },
     created: function(id, target) {
+      registry.push(missileViewModel.created(id, target))
     },
     destroyed: function(id) {
       registry.remove(function(m) {return m.id == id})

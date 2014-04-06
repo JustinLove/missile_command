@@ -21,8 +21,16 @@ define(['missile_command/preview'], function(preview) {
     clone: function(id, selected) {
       var missile = Object.create(this)
       missile.id = id
+      missile.grouped = ko.observable(true)
       missile.ready = ko.observable(false)
       missile.selected = ko.observable(selected)
+      return missile
+    },
+    created: function(id, target) {
+      var missile = this.clone(id, false)
+      target.zoom = 'surface'
+      missile.target = target
+      missile.grouped = ko.observable(false)
       return missile
     },
     show: function() {
@@ -38,9 +46,13 @@ define(['missile_command/preview'], function(preview) {
       model.setCommandIndex(1)
     },
     jump: function() {
-      api.select.recallGroup(this.id)
-      api.camera.track(true)
-      api.camera.setZoom('surface')
+      if (this.grouped()) {
+        api.select.recallGroup(this.id)
+        api.camera.track(true)
+        api.camera.setZoom('surface')
+      } else if (this.target) {
+        engine.call('camera.lookAt', JSON.stringify(this.target));
+      }
     }
   }
 })
