@@ -1,6 +1,31 @@
 define(['missile_command/missile_view_model'], function(missileViewModel) {
   var registry = ko.observableArray()
 
+  var enableStorage = function(lobbyId) {
+    var storage = ko.observable().extend({ session: 'missile_command_registered_'+lobbyId })
+
+    if (storage()) {
+      var ids = JSON.parse(storage())
+      ids.forEach(function(id) {
+        registry.push(missileViewModel.clone(id))
+      })
+    }
+
+    registry.subscribe(function(launchers) {
+      var ids = []
+      launchers.forEach(function(m) {
+        ids.push(m.id)
+      })
+
+      storage(JSON.stringify(ids))
+    })
+  }
+
+  engine.asyncCall("ubernet.getGameWithPlayer").done(function (data) {
+    data = JSON.parse(data);
+    enableStorage(data.LobbyID)
+  })
+
   return {
     registry: registry,
     register: function(id) {

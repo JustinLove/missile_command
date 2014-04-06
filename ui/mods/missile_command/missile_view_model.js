@@ -18,11 +18,11 @@ define(['missile_command/preview'], function(preview) {
   
 
   return {
-    clone: function(id) {
+    clone: function(id, selected) {
       var missile = Object.create(this)
       missile.id = id
       missile.ready = ko.observable(false)
-      missile.selected = ko.observable(true)
+      missile.selected = ko.observable(selected)
       return missile
     },
     show: function() {
