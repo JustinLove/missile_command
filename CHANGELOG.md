@@ -1,3 +1,8 @@
+## 0.3.0
+
+- bugfix: Showing jump icon on created events.
+- Prefer location over jump to group so hover works with a selection.
+
 ## 0.2.0
 
 - More conservative with hover pips to avoid loosing user selection.

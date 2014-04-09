@@ -47,10 +47,11 @@ define(['missile_command/preview'], function(preview) {
       api.select.captureGroup(this.id)
     },
     show: function() {
-      if (this.found()) {
-        if (!model.mode().match('command_') && matchingSelection()) {
-          preview.show(this)
-        }
+      var playerHasState = model.mode().match('command_') && !matchingSelection()
+      if (this.target()) {
+        preview.show(this)
+      } else if (this.grouped() && !playerHasState) {
+        preview.show(this)
       } else {
         preview.hide()
       }
@@ -63,12 +64,12 @@ define(['missile_command/preview'], function(preview) {
       model.setCommandIndex(1)
     },
     jump: function() {
-      if (this.grouped()) {
+      if (this.target()) {
+        engine.call('camera.lookAt', JSON.stringify(this.target()));
+      } else if (this.grouped()) {
         api.select.recallGroup(this.id)
         api.camera.track(true)
         api.camera.setZoom('surface')
-      } else if (this.target()) {
-        engine.call('camera.lookAt', JSON.stringify(this.target()));
       }
     }
   }
