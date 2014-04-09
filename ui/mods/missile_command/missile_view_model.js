@@ -38,7 +38,6 @@ define(['missile_command/preview'], function(preview) {
     },
     created: function(id, target) {
       var missile = this.clone(id)
-      target.zoom = 'surface'
       missile.target(target)
       return missile
     },
