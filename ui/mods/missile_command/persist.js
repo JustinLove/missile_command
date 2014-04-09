@@ -3,14 +3,14 @@ define(['missile_command/missile_view_model'], function(missileViewModel) {
     return {
       id: launcher.id,
       grouped: launcher.grouped(),
-      target: launcher.target
+      target: launcher.target()
     }
   }
 
   var deserializeLauncher = function(data) {
     var missile = missileViewModel.clone(data.id)
     missile.grouped(data.grouped)
-    missile.target = data.target
+    missile.target(data.target)
     return missile
   }
 

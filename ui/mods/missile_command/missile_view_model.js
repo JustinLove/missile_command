@@ -24,8 +24,9 @@ define(['missile_command/preview'], function(preview) {
       missile.grouped = ko.observable(false)
       missile.ready = ko.observable(false)
       missile.selected = ko.observable(false)
+      missile.target = ko.observable(null)
       missile.found = ko.computed(function() {
-        return missile.grouped() || missile.target
+        return missile.grouped() || missile.target()
       })
       return missile
     },
@@ -38,7 +39,7 @@ define(['missile_command/preview'], function(preview) {
     created: function(id, target) {
       var missile = this.clone(id)
       target.zoom = 'surface'
-      missile.target = target
+      missile.target(target)
       return missile
     },
     captureGroup: function() {
@@ -66,8 +67,8 @@ define(['missile_command/preview'], function(preview) {
         api.select.recallGroup(this.id)
         api.camera.track(true)
         api.camera.setZoom('surface')
-      } else if (this.target) {
-        engine.call('camera.lookAt', JSON.stringify(this.target));
+      } else if (this.target()) {
+        engine.call('camera.lookAt', JSON.stringify(this.target()));
       }
     }
   }
