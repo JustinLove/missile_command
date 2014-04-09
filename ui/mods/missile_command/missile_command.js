@@ -2,8 +2,9 @@ define([
   'missile_command/registry',
   'missile_command/persist',
   'missile_command/preview',
+  'missile_command/sanity_check',
   'text!missile_command/missile_command.html'
-], function(registry, persist, preview, html) {
+], function(registry, persist, preview, sanityCheck, html) {
   "use strict";
 
   var initiateStorage = function() {
@@ -24,6 +25,7 @@ define([
   }
 
   model.selection.subscribe(function(payload) {
+    sanityCheck.check(payload)
     if (!payload) {
       registry.showSelected([])
       return

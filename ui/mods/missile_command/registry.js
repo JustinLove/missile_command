@@ -42,7 +42,7 @@ define(['missile_command/missile_view_model'], function(missileViewModel) {
     },
     nextReady: function() {
       var m = _.find(registry(), function(m) {return m.ready()})
-      if (m && m.ready()) m.select()
+      if (m && m.ready()) m.attack()
       return m
     },
     showSelected: function(ids) {

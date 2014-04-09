@@ -1,4 +1,5 @@
-define(['missile_command/preview'], function(preview) {
+define(['missile_command/preview', 'missile_command/sanity_check'],
+function(preview, sanityCheck) {
   var nuke_launcher = '/pa/units/land/nuke_launcher/nuke_launcher.json'
 
   var matchingSelection = function() {
@@ -15,7 +16,6 @@ define(['missile_command/preview'], function(preview) {
     }
     return false
   }
-  
 
   return {
     clone: function(id) {
@@ -60,13 +60,17 @@ define(['missile_command/preview'], function(preview) {
     },
     select: function() {
       api.select.recallGroup(this.id)
+      sanityCheck.expect(this)
+    },
+    attack: function() {
+      this.select()
       model.setCommandIndex(1)
     },
     jump: function() {
       if (this.target()) {
         engine.call('camera.lookAt', JSON.stringify(this.target()));
       } else if (this.grouped()) {
-        api.select.recallGroup(this.id)
+        this.select()
         api.camera.track(true)
         api.camera.setZoom('surface')
       }
