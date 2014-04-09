@@ -42,8 +42,10 @@ function(preview, sanityCheck) {
       return missile
     },
     captureGroup: function() {
-      this.grouped(true)
-      api.select.captureGroup(this.id)
+      if (!this.grouped()) {
+        this.grouped(true)
+        api.select.captureGroup(this.id)
+      }
     },
     show: function() {
       var playerHasState = model.mode().match('command_') && !matchingSelection()
