@@ -3,7 +3,7 @@
   "build": "63475",
   "category": ["in-game", "ui"],
   "context": "client",
-  "date": "2014/04/06",
+  "date": "2014/04/08",
   "description": "Provides limited assistance for managing nuke launchers.",
   "display_name": "Missile Command Dev",
   "enabled": true,
@@ -17,9 +17,12 @@
       "coui://ui/mods/missile_command/require.js",
       "coui://ui/mods/missile_command/missile_command.css",
       "coui://ui/mods/missile_command/bootstrap.js"
+    ],
+    "start": [
+      "coui://ui/mods/missile_command/reset_grouped.js"
     ]
   },
   "signature": "not yet implemented",
-  "version": "0.2.0"
+  "version": "0.3.0"
 }
 

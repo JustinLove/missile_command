@@ -60,6 +60,7 @@ module.exports = function(grunt) {
               'LICENSE.txt',
               'README.md',
               'CHANGELOG.md',
+              'ui/mods/missile_command/reset_grouped.js',
               'ui/mods/missile_command/*.css'],
             dest: '../<%= target %>/',
           },

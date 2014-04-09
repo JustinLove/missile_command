@@ -2,6 +2,7 @@
 
 - bugfix: Showing jump icon on created events.
 - Prefer location over jump to group so hover works with a selection.
+- Additional checking for valid groups; attempts to clear grouped flag when the game clears it's internal group state.
 
 ## 0.2.0
 
