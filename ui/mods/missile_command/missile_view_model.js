@@ -48,7 +48,7 @@ function(preview, sanityCheck) {
       }
     },
     show: function() {
-      var playerHasState = model.mode().match('command_') && !matchingSelection()
+      var playerHasState = model.mode().match('command_') || !matchingSelection()
       if (this.target()) {
         preview.show(this)
       } else if (this.grouped() && !playerHasState) {
