@@ -24,7 +24,7 @@ define([
       if (attacker.ready()) {
         api.audio.playSound('/SE/UI/UI_Command_Build')
       } else {
-        api.audio.playSound('/SE/UI/UI_Unit_Select')
+        api.audio.playSound('/SE/UI/UI_Alert_metal_low')
       }
       attacker.attack()
     } else {
