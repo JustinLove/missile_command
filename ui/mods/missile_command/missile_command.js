@@ -44,7 +44,12 @@ define([
     }
   }
 
+  model.missileCommandWantsToAttack = false
   model.selection.subscribe(function(payload) {
+    if (model.missileCommandWantsToAttack && model.allowedCommands.Attack) {
+      model.setCommandIndex(1)
+    }
+
     sanityCheck.check(payload)
     if (!payload) {
       registry.showSelected([])

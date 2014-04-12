@@ -17,6 +17,14 @@ function(preview, sanityCheck) {
     return false
   }
 
+  wantsToAttack = false
+  model.selection.subscribe(function(payload) {
+    console.log(model.allowedCommands)
+    if (wantsToAttack && model.allowedCommands.Attack) {
+      model.setCommandIndex(1)
+    }
+  })
+
   return {
     clone: function(id) {
       var missile = Object.create(this)
@@ -67,6 +75,7 @@ function(preview, sanityCheck) {
     attack: function() {
       this.select()
       model.setCommandIndex(1)
+      wantsToAttack = true
     },
     jump: function() {
       if (this.target()) {
