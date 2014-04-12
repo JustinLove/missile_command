@@ -17,10 +17,23 @@ define([
   var nuke_launcher = '/pa/units/land/nuke_launcher/nuke_launcher.json'
   //var nuke_launcher = '/pa/units/land/energy_plant/energy_plant.json'
 
+  var attackQueue = []
+  var nextAttacker = function() {
+    if (attackQueue.length > 0) {
+      var attacker = attackQueue.shift()
+      attacker.attack()
+    }
+  }
+
+  var rapidAttack = function() {
+    attackQueue = registry.attackQueue()
+    nextAttacker()
+  }
+
   var checkCommand = function(command, selected) {
     if (command == 'attack' && selected) {
       registry.unready(selected)
-      registry.nextReady()
+      nextAttacker()
     }
   }
 
@@ -28,18 +41,25 @@ define([
     sanityCheck.check(payload)
     if (!payload) {
       registry.showSelected([])
+      // can't use this to reset attackQueue because we ALWAYS get a null event when changing selection
       return
     }
 
+    var perfect = false
     var si = payload.spec_ids
     if (Object.keys(si).length == 1) {
       if (si[nuke_launcher]) {
         if (si[nuke_launcher].length == 1) {
           registry.register(si[nuke_launcher][0])
+          perfect = true
         } else {
           registry.notice(si[nuke_launcher])
         }
       }
+    }
+
+    if (!perfect) {
+      attackQueue = []
     }
 
     registry.showSelected(si[nuke_launcher])
@@ -87,7 +107,7 @@ define([
     open: ko.observable(true),
     toggle: function() { this.open(!this.open()) },
     hidePreview: preview.hide,
-    nextReady: registry.nextReady
+    rapidAttack: rapidAttack
   }
 
   return {

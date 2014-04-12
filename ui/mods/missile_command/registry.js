@@ -40,10 +40,14 @@ define(['missile_command/missile_view_model'], function(missileViewModel) {
         }
       })
     },
-    nextReady: function() {
-      var m = _.find(registry(), function(m) {return m.ready()})
-      if (m && m.ready()) m.attack()
-      return m
+    ready: function() {
+      return _.filter(registry(), function(m) {return m.ready()})
+    },
+    notReady: function() {
+      return _.filter(registry(), function(m) {return m.grouped() && !m.ready()})
+    },
+    attackQueue: function() {
+      return this.ready().concat(this.notReady())
     },
     showSelected: function(ids) {
       ids = ids || []
