@@ -3,7 +3,7 @@
     <div class="control_chevron_auto"></div>
     <h3>Missile Command</h3>
   </div>
-  <div class="missile_command_cont" data-bind="visible: open, event: {mouseleave: hidePreview}">
+  <div class="missile_command_cont" data-bind="visible: open, event: {mouseleave: leave}">
     <input type="button" class="btn_commit"  data-bind="click: rapidAttack" value="ATTACK"/>
     <ul data-bind="foreach: registry">
       <li data-bind="css: {missile_selected: selected}, event: {mouseenter: show}">

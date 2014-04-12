@@ -113,7 +113,11 @@ define([
     registry: registry.registry,
     open: ko.observable(true),
     toggle: function() { this.open(!this.open()) },
-    hidePreview: preview.hide,
+    leave: function() {
+      preview.hide()
+      // prevent all our keys from going to a checkbox or button
+      document.activeElement.blur()
+    },
     rapidAttack: rapidAttack
   }
 
