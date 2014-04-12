@@ -21,6 +21,7 @@ function(preview, sanityCheck) {
   model.selection.subscribe(function(payload) {
     if (wantsToAttack && model.allowedCommands.Attack) {
       model.setCommandIndex(1)
+      wantsToAttack = false
     }
   })
 
