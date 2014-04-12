@@ -2,6 +2,7 @@
 
 - Ready launchers are selected first, but then unready launchers are queued up.
 - Bugfix: selecting attack wouldn't set attack command mode first time (no selection)
+- Bugfix: losing keyboard commands after using hover-pips.
 
 ## 0.3.0
 
