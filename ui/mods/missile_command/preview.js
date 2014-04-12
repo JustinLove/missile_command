@@ -15,6 +15,7 @@ define([], function() {
     hide: function() {
       model.preview.$div.hide();
       model.preview.update();
+      model.holodeck.focus()
     }
   }
 })
