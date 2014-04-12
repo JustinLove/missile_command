@@ -21,7 +21,14 @@ define([
   var nextAttacker = function() {
     if (attackQueue.length > 0) {
       var attacker = attackQueue.shift()
+      if (attacker.ready()) {
+        api.audio.playSound('/SE/UI/UI_Command_Build')
+      } else {
+        api.audio.playSound('/SE/UI/UI_Unit_Select')
+      }
       attacker.attack()
+    } else {
+      api.audio.playSound('/SE/UI/UI_Command_stop')
     }
   }
 

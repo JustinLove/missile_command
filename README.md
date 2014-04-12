@@ -13,9 +13,9 @@ When you select one (and only one) nuke launcher, it will be registered into the
 - Attack icon selects that launcher to fire.
 - "external site" button jumps to the launcher in the main view.
 
-The "Attack" button will select the first launcher which has it's ready checkbox set.
+The "Attack" button will select the one launcher and set attack mode.
 
-After firing a nuke, it will be marked as unready, and the next ready launcher will be selected.
+After firing a nuke, it will be marked as unready, and the next launcher will be selected.  Ready launchers are selected first, and then unready launchers, just in case they were ready and you handn't looked.
 
 A launcher without an attack icon was discovered by a create alert. There isn't an API to create a group from an alert, so you need to use the jump button find it and click on it.
 

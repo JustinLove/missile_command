@@ -1,3 +1,7 @@
+## 0.4.0
+
+- Ready launchers are selected first, but then unready launchers are queued up.
+
 ## 0.3.0
 
 - bugfix: Showing jump icon on created events.
