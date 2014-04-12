@@ -74,8 +74,11 @@ function(preview, sanityCheck) {
     },
     attack: function() {
       this.select()
-      model.setCommandIndex(1)
-      wantsToAttack = true
+      if (model.allowedCommands.Attack) {
+        model.setCommandIndex(1)
+      } else {
+        wantsToAttack = true
+      }
     },
     jump: function() {
       if (this.target()) {
