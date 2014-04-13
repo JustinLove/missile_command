@@ -61,6 +61,7 @@ module.exports = function(grunt) {
               'README.md',
               'CHANGELOG.md',
               'ui/mods/missile_command/reset_grouped.js',
+              'ui/mods/missile_command/server_browser.js',
               'ui/mods/missile_command/*.css'],
             dest: '../<%= target %>/',
           },
