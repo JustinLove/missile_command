@@ -2,6 +2,7 @@
 
 - Ready launchers are selected first, but then unready launchers are queued up.
 - Abililty to remove problem launchers from the list.
+- Layout changes; vestigial attack buttons removed.
 - Hide during game-over/review.
 - Bugfix: selecting attack wouldn't set attack command mode first time (no selection)
 - Bugfix: losing keyboard commands after using hover-pips.

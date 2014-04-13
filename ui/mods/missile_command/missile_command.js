@@ -133,7 +133,7 @@ define([
 
   return {
     ready: function() {
-      createFloatingFrame('missile_command_frame', 240, 40, {'offset': 'leftCenter', 'left': 0});
+      createFloatingFrame('missile_command_frame', 200, 40, {'offset': 'leftCenter', 'left': 0});
       var $container = $('#missile_command_frame_content')
       $(html).appendTo($container)
       ko.applyBindings(viewModel, $container[0])

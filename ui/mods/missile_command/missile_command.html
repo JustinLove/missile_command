@@ -7,11 +7,8 @@
     <input type="button" class="btn_commit"  data-bind="click: rapidAttack" value="ATTACK"/>
     <ul data-bind="foreach: registry">
       <li data-bind="css: {missile_selected: selected}, event: {mouseenter: show}">
+        <input class="missile_ready" type="checkbox" data-bind="checked: ready, visible: grouped">
         <span class="missile_id" data-bind="text: id">id</span>
-        <input type="checkbox" data-bind="checked: ready">
-        <a class="missile_command_attack" data-bind="click: attack, visible: grouped">
-          <img src="coui://ui/main/game/live_game/img/command_bar/icons_command_attack.png">
-        </a>
         <i class="missile_command_jump ui-icon ui-icon-extlink" data-bind="click: jump, visible: found">show</i>
         <i class="missile_command_remove ui-icon ui-icon-close" data-bind="click: remove">remove</i>
       </li>
