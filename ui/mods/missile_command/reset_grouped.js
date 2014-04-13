@@ -1,8 +1,9 @@
 setTimeout(function() {
-  engine.asyncCall("ubernet.getGameWithPlayer").done(function (data) {
-    console.log('reset grouped', data)
-    data = JSON.parse(data);
-    var storage = ko.observable().extend({ session: 'missile_command_registered_'+data.LobbyID })
+  model.lobbyId.subscribe(function(lobbyId) {
+    sessionStorage['lobbyId'] = encode(lobbyId);
+
+    console.log('reset grouped', lobbyId)
+    var storage = ko.observable().extend({ session: 'missile_command_registered_'+lobbyId })
 
     if (storage()) {
       var ser = JSON.parse(storage())

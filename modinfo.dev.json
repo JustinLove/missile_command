@@ -20,6 +20,9 @@
     ],
     "start": [
       "coui://ui/mods/missile_command/reset_grouped.js"
+    ],
+    "server_browser": [
+      "coui://ui/mods/missile_command/server_browser.js"
     ]
   },
   "signature": "not yet implemented",

@@ -8,10 +8,19 @@ define([
   "use strict";
 
   var initiateStorage = function() {
-    engine.asyncCall("ubernet.getGameWithPlayer").done(function (data) {
-      data = JSON.parse(data);
-      persist.enableStorage(data.LobbyID, registry.registry)
-    })
+    var lobbyId = ko.observable().extend({ session: 'lobbyId' });
+    console.log('loaded lobbyId', lobbyId())
+
+    if (lobbyId()) {
+      persist.enableStorage(lobbyId(), registry.registry)
+    } else {
+      engine.asyncCall("ubernet.getGameWithPlayer").done(function (data) {
+        data = JSON.parse(data);
+        console.log(data)
+        lobbyId(data.LobbyID)
+        persist.enableStorage(data.LobbyID, registry.registry)
+      })
+    }
   }
 
   var nuke_launcher = '/pa/units/land/nuke_launcher/nuke_launcher.json'
