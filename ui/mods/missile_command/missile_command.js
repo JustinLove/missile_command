@@ -101,7 +101,7 @@ define([
   settings.selectedTypes[alertsManager.WATCH_TYPES.DESTROYED] = ['Nuke'];
 
   alertsManager.addFilteredListener(function(payload) {
-    console.log(payload);
+    //console.log(payload);
     payload.list.forEach(function(alert) {
       if (alert.watch_type == alertsManager.WATCH_TYPES.CREATED) {
         registry.created(alert.id, {location: alert.location, planet_id: alert.planet_id})

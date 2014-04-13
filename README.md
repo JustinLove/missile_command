@@ -12,6 +12,7 @@ When you select one (and only one) nuke launcher, it will be registered into the
 - Check the box if it's ready to fire.  Sorry, the code can't tell you; use the hover to quickly check and update all you launchers.
 - Attack icon selects that launcher to fire.
 - "external site" button jumps to the launcher in the main view.
+- Close "x" button adds a "Remove" button to confirm removing a problem launcher from the list.  Click the.  Click the "x" again to cancel the remove action without confirming.
 
 The "Attack" button will select the one launcher and set attack mode.
 
