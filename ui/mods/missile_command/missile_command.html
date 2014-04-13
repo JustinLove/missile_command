@@ -13,6 +13,10 @@
           <img src="coui://ui/main/game/live_game/img/command_bar/icons_command_attack.png">
         </a>
         <i class="missile_command_jump ui-icon ui-icon-extlink" data-bind="click: jump, visible: found">show</i>
+        <i class="missile_command_remove ui-icon ui-icon-close" data-bind="click: remove">remove</i>
+      </li>
+      <li data-bind="visible: removing, event: {mouseenter: show}">
+        <input type="button" class="btn_commit" data-bind="click: function() {$parent.remove(id)}" value="REMOVE"/>
       </li>
     </ul>
   </div>

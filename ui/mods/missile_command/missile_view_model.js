@@ -33,6 +33,7 @@ function(preview, sanityCheck) {
       missile.ready = ko.observable(false)
       missile.selected = ko.observable(false)
       missile.target = ko.observable(null)
+      missile.removing = ko.observable(false)
       missile.found = ko.computed(function() {
         return missile.grouped() || missile.target()
       })
@@ -88,6 +89,9 @@ function(preview, sanityCheck) {
         api.camera.track(true)
         api.camera.setZoom('surface')
       }
+    },
+    remove: function() {
+      this.removing(!this.removing())
     }
   }
 })

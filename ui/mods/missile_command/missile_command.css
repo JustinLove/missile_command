@@ -51,6 +51,12 @@
 
 .missile_command_jump {
   position: absolute;
+  right: 20px;
+  top: 0;
+}
+
+.missile_command_remove {
+  position: absolute;
   right: 0;
   top: 0;
 }
@@ -58,7 +64,7 @@
 .missile_command_attack {
   position: absolute;
   top: 0;
-  right: 16px;
+  right: 40px;
   width: 40px;
   height: 20px;
   border: solid #444 1px;
@@ -75,11 +81,12 @@
   height: 20px;
 }
 
-.missile_command_jump {
+.missile_command i {
   border: solid black 1px;
 }
 
-.missile_command_jump:hover {
+.missile_command i:hover {
   background-color: #088;
   border-color: #0ff;
 }
+
