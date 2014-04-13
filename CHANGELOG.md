@@ -2,9 +2,10 @@
 
 - Ready launchers are selected first, but then unready launchers are queued up.
 - Abililty to remove problem launchers from the list.
+- Hide during game-over/review.
 - Bugfix: selecting attack wouldn't set attack command mode first time (no selection)
 - Bugfix: losing keyboard commands after using hover-pips.
-- Bugfix: tracks current game id differently, since UberNet doesn't allways know which game you are in.
+- Bugfix: tracks current game id differently, since UberNet doesn't always know which game you are in.
 
 ## 0.3.0
 

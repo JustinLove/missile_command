@@ -117,7 +117,7 @@ define([
 
   var viewModel = {
     visible: ko.computed(function() {
-      return registry.registry().length > 0
+      return registry.registry().length > 0 && model.mode() != 'game_over'
     }),
     registry: registry.registry,
     remove: registry.destroyed,
