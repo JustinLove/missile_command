@@ -1,6 +1,8 @@
-## 0.4.1
+## 1.0.0
 
 - Clear groups on disconnect api (Reconnect Button mod compatibitilty)
+- Add icon
+- Release to PAMM
 
 ## 0.4.0
 
