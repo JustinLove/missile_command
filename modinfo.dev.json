@@ -3,7 +3,7 @@
   "build": "63475",
   "category": ["in-game", "ui"],
   "context": "client",
-  "date": "2014/04/13",
+  "date": "2014/04/27",
   "description": "Provides limited assistance for managing nuke launchers.",
   "display_name": "Missile Command Dev",
   "enabled": true,
@@ -26,6 +26,6 @@
     ]
   },
   "signature": "not yet implemented",
-  "version": "0.4.0"
+  "version": "0.4.1"
 }
 

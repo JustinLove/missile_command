@@ -23,6 +23,33 @@ define([
     }
   }
 
+  var originalDisconnect
+  var clearOnDisconnect = function() {
+    var lobbyId = ko.observable().extend({ session: 'lobbyId' });
+    if (lobbyId()) {
+      var storage = ko.observable().extend({ session: 'missile_command_registered_'+lobbyId() })
+      if (storage()) {
+        var ser = JSON.parse(storage())
+        ser.forEach(function(data) {
+          data.grouped = false
+        })
+        storage(JSON.stringify(ser))
+      }
+    }
+
+    return originalDisconnect()
+  }
+
+  var installDisconnectHook = function() {
+    if (model.disconnect) {
+      console.log("MC: installing disconnect hook")
+      originalDisconnect = model.disconnect
+      model.disconnect = clearOnDisconnect
+    } else {
+      setTimeout(installDisconnectHook, 1000)
+    }
+  }
+
   var nuke_launcher = '/pa/units/land/nuke_launcher/nuke_launcher.json'
   //var nuke_launcher = '/pa/units/land/energy_plant/energy_plant.json'
 
@@ -138,8 +165,9 @@ define([
       $(html).appendTo($container)
       ko.applyBindings(viewModel, $container[0])
 
-      // engine.asyncCall doens't exist at load time
+      // some api methods doesn't exist at load time
       setTimeout(initiateStorage, 0)
+      setTimeout(installDisconnectHook, 0)
     },
     viewModel: viewModel
   }

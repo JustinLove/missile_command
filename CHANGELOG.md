@@ -1,3 +1,7 @@
+## 0.4.1
+
+- Clear groups on disconnect api (Reconnect Button mod compatibitilty)
+
 ## 0.4.0
 
 - Ready launchers are selected first, but then unready launchers are queued up.
