@@ -3,19 +3,16 @@
   "build": "64498",
   "category": ["in-game", "ui"],
   "context": "client",
-  "date": "2014/04/28",
+  "date": "2014/07/15",
+  "dependencies": ["info.nanodesu.alertsmanager"],
   "description": "Provides limited assistance for managing nuke launchers.",
-  "display_name": "Missile Command Dev",
-  "enabled": true,
+  "display_name": "Missile Command",
   "forum": "https://forums.uberent.com/threads/wip-missile-command.58542/",
-  "id": "missile_command",
   "identifier": "com.wondible.pa.missile_command",
   "icon": "http://pamods.github.io/icons/missile_command.png",
   "priority": 100,
-  "requires": [ "rFloatFrame", "alertsManager" ],
   "scenes": {
     "live_game": [
-      "coui://ui/mods/missile_command/require.js",
       "coui://ui/mods/missile_command/missile_command.css",
       "coui://ui/mods/missile_command/bootstrap.js"
     ],
@@ -27,6 +24,6 @@
     ]
   },
   "signature": "not yet implemented",
-  "version": "1.0.0"
+  "version": "2.0.0"
 }
 

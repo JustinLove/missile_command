@@ -1,3 +1,9 @@
+## 2.0.0
+
+- If unpacked RequireJS is good enough for Galactic War, it's good enough for me.
+- Remove Grunt
+- Remove depreciated modinfo fields
+
 ## 1.0.0
 
 - Clear groups on disconnect api (Reconnect Button mod compatibitilty)
