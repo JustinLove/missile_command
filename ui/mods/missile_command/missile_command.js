@@ -8,7 +8,6 @@ define([
   "use strict";
 
   var nuke_launcher = '/pa/units/land/nuke_launcher/nuke_launcher.json'
-  //var nuke_launcher = '/pa/units/land/energy_plant/energy_plant.json'
 
   var attackQueue = []
   var nextAttacker = function() {
@@ -75,6 +74,11 @@ define([
     if (payload.lobbyId) {
       persist.enableStorage(payload.lobbyId, registry.registry)
     }
+  }
+
+  handlers.missile_command_attacked = function(selected) {
+    registry.unready(selected)
+    nextAttacker()
   }
 
   var viewModel = {

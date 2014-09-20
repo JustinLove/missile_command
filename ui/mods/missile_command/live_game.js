@@ -9,8 +9,7 @@ define([
 
   var checkCommand = function(command, selected) {
     if (command == 'attack' && selected) {
-      registry.unready(selected)
-      //nextAttacker()
+      api.panels.missile_command.message('missile_command_attacked', selected)
     }
   }
 
