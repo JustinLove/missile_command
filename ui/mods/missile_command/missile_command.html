@@ -1,20 +1,36 @@
-<div class="missile_command" data-bind="visible: visible">
-  <div class="missile_command_control" data-bind="click: toggle">
-    <div class="control_chevron_auto"></div>
-    <h3>Missile Command</h3>
-  </div>
-  <div class="missile_command_cont" data-bind="visible: open, event: {mouseleave: leave}">
-    <input type="button" class="btn_commit"  data-bind="click: rapidAttack" value="ATTACK"/>
-    <ul data-bind="foreach: registry">
-      <li data-bind="css: {missile_selected: selected}, event: {mouseenter: show}">
-        <input class="missile_ready" type="checkbox" data-bind="checked: ready, visible: grouped">
-        <span class="missile_id" data-bind="text: id">id</span>
-        <i class="missile_command_jump ui-icon ui-icon-extlink" data-bind="click: jump, visible: found">show</i>
-        <i class="missile_command_remove ui-icon ui-icon-close" data-bind="click: remove">remove</i>
-      </li>
-      <li data-bind="visible: removing, event: {mouseenter: show}">
-        <input type="button" class="btn_commit" data-bind="click: function() {$parent.remove(id)}" value="REMOVE"/>
-      </li>
-    </ul>
-  </div>
-</div>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<noloc><title>Live Game: Missile Command</title></noloc>
+<link href="coui://ui/main/shared/css/global.css" rel="stylesheet" type="text/css" />
+<link href="missile_command.css" rel="stylesheet" type="text/css" />
+<script src="coui://ui/main/shared/js/common.js" type="text/javascript"></script>
+<script src="missile_command_bootstrap.js" type="text/javascript"></script>
+</head>
+  <body class="body_panel">
+    <body-dock>
+      <div class="missile_command" data-bind="visible: visible">
+        <div class="missile_command_control" data-bind="click: toggle">
+          <div class="control_chevron_auto"></div>
+          <h3>Missile Command</h3>
+        </div>
+        <div class="missile_command_cont" data-bind="visible: open, event: {mouseleave: leave}">
+          <input type="button" class="btn_commit"  data-bind="click: rapidAttack" value="ATTACK"/>
+          <ul data-bind="foreach: registry">
+            <li data-bind="css: {missile_selected: selected}, event: {mouseenter: show}">
+            <input class="missile_ready" type="checkbox" data-bind="checked: ready, visible: grouped">
+            <span class="missile_id" data-bind="text: id">id</span>
+            <i class="missile_command_jump ui-icon ui-icon-extlink" data-bind="click: jump, visible: found">show</i>
+            <i class="missile_command_remove ui-icon ui-icon-close" data-bind="click: remove">remove</i>
+            </li>
+            <li data-bind="visible: removing, event: {mouseenter: show}">
+            <input type="button" class="btn_commit" data-bind="click: function() {$parent.remove(id)}" value="REMOVE"/>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </body-dock>
+  </body>
+</html>
+

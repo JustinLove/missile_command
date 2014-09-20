@@ -1,6 +1,7 @@
 define([], function() {
   return {
     show: function(missile) {
+      return
       model.preview.$div.show();
       model.preview.update();
 
@@ -13,6 +14,7 @@ define([], function() {
       }, 30);
     },
     hide: function() {
+      return
       model.holodeck.focus()
       model.preview.$div.hide();
       model.preview.update();

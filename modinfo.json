@@ -4,7 +4,7 @@
   "category": ["in-game", "ui"],
   "context": "client",
   "date": "2014/07/15",
-  "dependencies": ["info.nanodesu.alertsmanager"],
+  "dependencies": [],
   "description": "Provides limited assistance for managing nuke launchers.",
   "display_name": "Missile Command",
   "forum": "https://forums.uberent.com/threads/wip-missile-command.58542/",
@@ -13,8 +13,7 @@
   "priority": 100,
   "scenes": {
     "live_game": [
-      "coui://ui/mods/missile_command/missile_command.css",
-      "coui://ui/mods/missile_command/bootstrap.js"
+      "coui://ui/mods/missile_command/live_game_bootstrap.js"
     ],
     "start": [
       "coui://ui/mods/missile_command/reset_grouped.js"

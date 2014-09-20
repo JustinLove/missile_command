@@ -3,6 +3,7 @@ function(preview, sanityCheck) {
   var nuke_launcher = '/pa/units/land/nuke_launcher/nuke_launcher.json'
 
   var matchingSelection = function() {
+    /*
     var payload = model.selection()
     if (!payload) {
       return true
@@ -14,16 +15,19 @@ function(preview, sanityCheck) {
         return true
       }
     }
+    */
     return false
   }
 
   wantsToAttack = false
+  /*
   model.selection.subscribe(function(payload) {
     if (wantsToAttack && model.allowedCommands.Attack) {
       model.setCommandIndex(1)
       wantsToAttack = false
     }
   })
+  */
 
   return {
     clone: function(id) {

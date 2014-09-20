@@ -1,9 +1,10 @@
 define([
+  'missile_command/panel',
   'missile_command/registry',
   'missile_command/persist',
   'missile_command/preview',
   'missile_command/sanity_check',
-], function(registry, persist, preview, sanityCheck) {
+], function(panel, registry, persist, preview, sanityCheck) {
   "use strict";
 
   var initiateStorage = function() {
@@ -72,38 +73,65 @@ define([
     nextAttacker()
   }
 
-  handlers.watch_list = function(payload) {
-    console.log(payload);
-    /*
-    payload.list.forEach(function(alert) {
-      if (alert.watch_type == alertsManager.WATCH_TYPES.CREATED) {
-        registry.created(alert.id, {location: alert.location, planet_id: alert.planet_id})
-      } else if (alert.watch_type == alertsManager.WATCH_TYPES.DESTROYED) {
-        registry.destroyed(alert.id)
+  var checkCommand = function(command, selected) {
+    if (command == 'attack' && selected) {
+      registry.unready(selected)
+      nextAttacker()
+    }
+  }
+
+  model.selection.subscribe(function(payload) {
+    sanityCheck.check(payload)
+    if (!payload) {
+      registry.showSelected([])
+      // can't use this to reset attackQueue because we ALWAYS get a null event when changing selection
+      return
+    }
+
+    var perfect = false
+    var si = payload.spec_ids
+    if (Object.keys(si).length == 1) {
+      if (si[nuke_launcher]) {
+        if (si[nuke_launcher].length == 1) {
+          registry.register(si[nuke_launcher][0])
+          perfect = true
+        } else {
+          registry.notice(si[nuke_launcher])
+        }
       }
-    })
-    */
+    }
+
+    if (!perfect) {
+      attackQueue = []
+    }
+
+    registry.showSelected(si[nuke_launcher])
+  })
+
+  var originalUnitCommand = api.Holodeck.prototype.unitCommand
+  api.Holodeck.prototype.unitCommand = function(command, x, y, queue) {
+    var selected = model.selection().spec_ids[nuke_launcher]
+    return originalUnitCommand.apply(this, arguments).success(
+      function() {checkCommand(command, selected)})
+  }
+
+  var originalTargetCommand = api.unit.targetCommand
+  api.unit.targetCommand = function(command, target, queue) {
+    var selected = model.selection().spec_ids[nuke_launcher]
+    return originalTargetCommand.apply(this, arguments).success(
+      function() {checkCommand(command, selected)})
   }
 
   var viewModel = {
     visible: ko.computed(function() {
-      return true
-      //return registry.registry().length > 0 && model.mode() != 'game_over'
+      return registry.registry().length > 0 && model.mode() != 'game_over'
     }),
-    registry: registry.registry,
-    remove: registry.destroyed,
-    open: ko.observable(true),
-    toggle: function() { this.open(!this.open()) },
-    leave: function() {
-      preview.hide()
-      // prevent all our keys from going to a checkbox or button
-      document.activeElement.blur()
-    },
-    rapidAttack: rapidAttack
   }
 
   return {
     ready: function() {
+      panel()
+
       // some api methods doesn't exist at load time
       setTimeout(initiateStorage, 0)
       setTimeout(installDisconnectHook, 0)

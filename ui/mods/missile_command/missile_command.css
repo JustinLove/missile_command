@@ -1,3 +1,22 @@
+body {
+  background: none;
+}
+
+.body_panel {
+  position: absolute;
+  top: 0; 
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+body-dock {
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-height: 75px;
+}
+
 .missile_command {
   font-size: 12px;
   font-family: 'Armata Regular';

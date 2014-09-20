@@ -1,4 +1,8 @@
-console.log('boostrap')
+console.log('bootstrap')
+
+var model;
+var handlers = {};
+
 // immediately invoked function was causing undefined function error
 var missileCommandRequireSetup = function() {
   var paths = require.s.contexts._.config.paths
@@ -7,13 +11,20 @@ var missileCommandRequireSetup = function() {
 }
 missileCommandRequireSetup()
 
-// make the object keys exist for Panel.ready
-var missile_command_stub = function() {}
-_.defaults(handlers, {
-  selection: missile_command_stub
-})
 require(['missile_command/missile_command'], function(missile_command) {
   "use strict";
+
+  model = missile_command.viewModel
+
+  // inject per scene mods
+  if (scene_mod_list['missile_command'])
+      loadMods(scene_mod_list['missile_command']);
+
+  // setup send/recv messages and signals
+  app.registerWithCoherent(model, handlers);
+
+  // Activates knockout.js
+  ko.applyBindings(model);
 
   $(missile_command.ready)
 })
