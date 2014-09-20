@@ -70,7 +70,7 @@ define([
   }
 
   handlers.missile_command_state = function(payload) {
-    console.log(payload)
+    //console.log(payload)
     if (payload.lobbyId) {
       persist.enableStorage(payload.lobbyId, registry.registry)
     }
