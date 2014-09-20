@@ -3,6 +3,8 @@ define([
   'missile_command/persist',
   'missile_command/preview',
   'missile_command/sanity_check',
+  'coui://ui/main/game/live_game/js/constants.js',
+  'coui://ui/main/game/live_game/js/events.js',
 ], function(registry, persist, preview, sanityCheck) {
   "use strict";
 
@@ -74,15 +76,15 @@ define([
 
   handlers.watch_list = function(payload) {
     console.log(payload);
-    /*
     payload.list.forEach(function(alert) {
-      if (alert.watch_type == alertsManager.WATCH_TYPES.CREATED) {
-        registry.created(alert.id, {location: alert.location, planet_id: alert.planet_id})
-      } else if (alert.watch_type == alertsManager.WATCH_TYPES.DESTROYED) {
-        registry.destroyed(alert.id)
+      if (eventSystem.isType(constants.unit_type.Nuke, alert.unit_types)) {
+        if (alert.watch_type == constants.watch_type.ready) {
+          registry.created(alert.id, {location: alert.location, planet_id: alert.planet_id})
+        } else if (alert.watch_type == constants.watch_type.death) {
+          registry.destroyed(alert.id)
+        }
       }
     })
-    */
   }
 
   var viewModel = {
