@@ -2,10 +2,9 @@ define([
   'missile_command/registry',
   'missile_command/persist',
   'missile_command/preview',
-  'missile_command/sanity_check',
   'coui://ui/main/game/live_game/js/constants.js',
   'coui://ui/main/game/live_game/js/events.js',
-], function(registry, persist, preview, sanityCheck) {
+], function(registry, persist, preview) {
   "use strict";
 
   var initiateStorage = function() {
@@ -31,9 +30,6 @@ define([
       var storage = ko.observable().extend({ session: 'missile_command_registered_'+lobbyId() })
       if (storage()) {
         var ser = JSON.parse(storage())
-        ser.forEach(function(data) {
-          data.grouped = false
-        })
         storage(JSON.stringify(ser))
       }
     }

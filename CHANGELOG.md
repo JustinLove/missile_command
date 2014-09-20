@@ -3,6 +3,8 @@
 - If unpacked RequireJS is good enough for Galactic War, it's good enough for me.
 - Remove Grunt
 - Remove depreciated modinfo fields
+- Convert to panel (supports mod loading in "missile_command")
+- Replace group tracking with select.byIds
 
 ## 1.0.0
 

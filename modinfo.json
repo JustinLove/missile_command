@@ -15,9 +15,6 @@
     "live_game": [
       "coui://ui/mods/missile_command/live_game_bootstrap.js"
     ],
-    "start": [
-      "coui://ui/mods/missile_command/reset_grouped.js"
-    ],
     "server_browser": [
       "coui://ui/mods/missile_command/server_browser.js"
     ]

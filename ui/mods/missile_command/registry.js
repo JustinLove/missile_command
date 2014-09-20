@@ -5,9 +5,7 @@ define(['missile_command/missile_view_model'], function(missileViewModel) {
     registry: registry,
     register: function(id) {
       var launcher = _.find(registry(), function(m) {return m.id == id})
-      if (launcher) {
-        launcher.captureGroup()
-      } else {
+      if (!launcher) {
         registry.push(missileViewModel.newSelection(id))
       }
     },
@@ -44,7 +42,7 @@ define(['missile_command/missile_view_model'], function(missileViewModel) {
       return _.filter(registry(), function(m) {return m.ready()})
     },
     notReady: function() {
-      return _.filter(registry(), function(m) {return m.grouped() && !m.ready()})
+      return _.filter(registry(), function(m) {return !m.ready()})
     },
     attackQueue: function() {
       return this.ready().concat(this.notReady())

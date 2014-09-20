@@ -3,8 +3,7 @@ define([
   'missile_command/registry',
   'missile_command/persist',
   'missile_command/preview',
-  'missile_command/sanity_check',
-], function(panel, registry, persist, preview, sanityCheck) {
+], function(panel, registry, persist, preview) {
   "use strict";
 
   var initiateStorage = function() {
@@ -30,9 +29,6 @@ define([
       var storage = ko.observable().extend({ session: 'missile_command_registered_'+lobbyId() })
       if (storage()) {
         var ser = JSON.parse(storage())
-        ser.forEach(function(data) {
-          data.grouped = false
-        })
         storage(JSON.stringify(ser))
       }
     }
@@ -81,7 +77,6 @@ define([
   }
 
   model.selection.subscribe(function(payload) {
-    sanityCheck.check(payload)
     if (!payload) {
       registry.showSelected([])
       // can't use this to reset attackQueue because we ALWAYS get a null event when changing selection

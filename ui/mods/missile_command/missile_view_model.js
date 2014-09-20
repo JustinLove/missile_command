@@ -1,5 +1,5 @@
-define(['missile_command/preview', 'missile_command/sanity_check'],
-function(preview, sanityCheck) {
+define(['missile_command/preview'],
+function(preview) {
   var nuke_launcher = '/pa/units/land/nuke_launcher/nuke_launcher.json'
 
   var matchingSelection = function() {
@@ -33,20 +33,15 @@ function(preview, sanityCheck) {
     clone: function(id) {
       var missile = Object.create(this)
       missile.id = id
-      missile.grouped = ko.observable(false)
       missile.ready = ko.observable(false)
       missile.selected = ko.observable(false)
       missile.target = ko.observable(null)
       missile.removing = ko.observable(false)
-      missile.found = ko.computed(function() {
-        return missile.grouped() || missile.target()
-      })
       return missile
     },
     newSelection: function(id) {
       var missile = this.clone(id)
       missile.selected(true)
-      missile.captureGroup()
       return missile
     },
     created: function(id, target) {
@@ -54,18 +49,12 @@ function(preview, sanityCheck) {
       missile.target(target)
       return missile
     },
-    captureGroup: function() {
-      if (!this.grouped()) {
-        this.grouped(true)
-        api.select.captureGroup(this.id)
-      }
-    },
     show: function() {
       return
       var playerHasState = model.mode().match('command_') || !matchingSelection()
       if (this.target()) {
         preview.show(this)
-      } else if (this.grouped() && !playerHasState) {
+      } else if (!playerHasState) {
         preview.show(this)
       } else {
         preview.hide()
@@ -75,21 +64,22 @@ function(preview, sanityCheck) {
       preview.hide()
     },
     select: function() {
-      api.select.recallGroup(this.id)
-      sanityCheck.expect(this)
+      engine.call("select.byIds", [this.id])
     },
     attack: function() {
       this.select()
+      /*
       if (model.allowedCommands.Attack) {
         model.setCommandIndex(1)
       } else {
         wantsToAttack = true
       }
+      */
     },
     jump: function() {
       if (this.target()) {
         engine.call('camera.lookAt', JSON.stringify(this.target()));
-      } else if (this.grouped()) {
+      } else {
         this.select()
         api.camera.track(true)
         api.camera.setZoom('surface')
