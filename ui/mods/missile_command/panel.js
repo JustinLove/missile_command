@@ -1,5 +1,5 @@
 define(function() {
-  return function() {
+  return function(model) {
     var $panel = $('<panel id="missile_command"></panel>').css({
       visibility: 'hidden',
       position: 'absolute',
@@ -10,9 +10,10 @@ define(function() {
       'no-keyboard': true,
       'yield-focus': true,
       fit: "dock-top-right",
-      'data-bind': '{visible: visible}'
+      'data-bind': 'visible: visible'
     })
     $panel.appendTo('body')
+    ko.applyBindings(model, $panel[0])
     api.Panel.bindPanels()
   }
 })

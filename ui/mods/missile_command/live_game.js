@@ -102,7 +102,7 @@ define([
 
   return {
     ready: function() {
-      panel()
+      panel(viewModel)
     },
     viewModel: viewModel
   }
