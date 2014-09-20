@@ -76,11 +76,18 @@ define([
     }
   }
 
+  var wantsToAttack = false
+
   model.selection.subscribe(function(payload) {
     if (!payload) {
       registry.showSelected([])
       // can't use this to reset attackQueue because we ALWAYS get a null event when changing selection
       return
+    }
+
+    if (wantsToAttack && model.allowedCommands.Attack) {
+      model.setCommandIndex(1)
+      wantsToAttack = false
     }
 
     var perfect = false
@@ -103,6 +110,7 @@ define([
     registry.showSelected(si[nuke_launcher])
   })
 
+
   var originalUnitCommand = api.Holodeck.prototype.unitCommand
   api.Holodeck.prototype.unitCommand = function(command, x, y, queue) {
     var selected = model.selection().spec_ids[nuke_launcher]
@@ -121,6 +129,14 @@ define([
     visible: ko.computed(function() {
       return registry.registry().length > 0 && model.mode() != 'game_over'
     }),
+  }
+
+  handlers.missile_command_attack = function() {
+    if (model.allowedCommands.Attack) {
+      model.setCommandIndex(1)
+    } else {
+      wantsToAttack = true
+    }
   }
 
   return {

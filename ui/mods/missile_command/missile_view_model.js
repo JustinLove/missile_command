@@ -19,16 +19,6 @@ function(preview) {
     return false
   }
 
-  wantsToAttack = false
-  /*
-  model.selection.subscribe(function(payload) {
-    if (wantsToAttack && model.allowedCommands.Attack) {
-      model.setCommandIndex(1)
-      wantsToAttack = false
-    }
-  })
-  */
-
   return {
     clone: function(id) {
       var missile = Object.create(this)
@@ -64,13 +54,7 @@ function(preview) {
     },
     attack: function() {
       this.select()
-      /*
-      if (model.allowedCommands.Attack) {
-        model.setCommandIndex(1)
-      } else {
-        wantsToAttack = true
-      }
-      */
+      api.Panel.message(api.Panel.parentId, 'missile_command_attack');
     },
     targetZoom: function(zoom) {
       if (this.target()) {
