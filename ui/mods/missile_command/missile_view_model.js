@@ -61,6 +61,7 @@ function(preview, sanityCheck) {
       }
     },
     show: function() {
+      return
       var playerHasState = model.mode().match('command_') || !matchingSelection()
       if (this.target()) {
         preview.show(this)

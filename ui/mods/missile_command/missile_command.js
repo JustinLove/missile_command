@@ -75,7 +75,7 @@ define([
   }
 
   handlers.watch_list = function(payload) {
-    console.log(payload);
+    //console.log(payload);
     payload.list.forEach(function(alert) {
       if (eventSystem.isType(constants.unit_type.Nuke, alert.unit_types)) {
         if (alert.watch_type == constants.watch_type.ready) {
