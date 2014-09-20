@@ -19,7 +19,6 @@ define(['missile_command/missile_view_model'], function(missileViewModel) {
     created: function(id, target) {
       // possible to click on building in progress, before it's created event
       var launcher = _.find(registry(), function(m) {return m.id == id})
-      target.zoom = 'surface'
       if (launcher) {
         launcher.target(target)
       } else {

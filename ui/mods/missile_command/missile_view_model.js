@@ -50,11 +50,7 @@ function(preview) {
       return missile
     },
     show: function() {
-      return
-      var playerHasState = model.mode().match('command_') || !matchingSelection()
       if (this.target()) {
-        preview.show(this)
-      } else if (!playerHasState) {
         preview.show(this)
       } else {
         preview.hide()
@@ -76,9 +72,16 @@ function(preview) {
       }
       */
     },
+    targetZoom: function(zoom) {
+      if (this.target()) {
+        var target = _.clone(this.target())
+        target.zoom = zoom
+        return target
+      }
+    },
     jump: function() {
       if (this.target()) {
-        engine.call('camera.lookAt', JSON.stringify(this.target()));
+        engine.call('camera.lookAt', JSON.stringify(this.targetZoom('air')));
       } else {
         this.select()
         api.camera.track(true)

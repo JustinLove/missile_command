@@ -1,23 +1,15 @@
 define([], function() {
   return {
     show: function(missile) {
-      return
-      model.preview.$div.show();
-      model.preview.update();
+      var target = missile.targetZoom('surface')
 
-      // Delay fixes issues with intial frame camera setup vs focus problems
-      _.delay(function() {
-        var focused = api.Holodeck.focused;
-        model.preview.focus();
-        missile.jump()
-        if (focused) focused.focus();
-      }, 30);
+      if (!target)
+        return;
+
+      api.Panel.message(api.Panel.parentId, 'unit_alert.show_preview', target);
     },
     hide: function() {
-      return
-      model.holodeck.focus()
-      model.preview.$div.hide();
-      model.preview.update();
+      api.Panel.message(api.Panel.parentId, 'unit_alert.hide_preview');
     }
   }
 })
