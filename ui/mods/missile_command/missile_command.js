@@ -30,6 +30,33 @@ define([
     nextAttacker()
   }
 
+  handlers.selection = function(payload) {
+    if (!payload) {
+      registry.showSelected([])
+      // can't use this to reset attackQueue because we ALWAYS get a null event when changing selection
+      return
+    }
+
+    var perfect = false
+    var si = payload.spec_ids
+    if (Object.keys(si).length == 1) {
+      if (si[nuke_launcher]) {
+        if (si[nuke_launcher].length == 1) {
+          registry.register(si[nuke_launcher][0])
+          perfect = true
+        } else {
+          registry.notice(si[nuke_launcher])
+        }
+      }
+    }
+
+    if (!perfect) {
+      attackQueue = []
+    }
+
+    registry.showSelected(si[nuke_launcher])
+  }
+
   handlers.watch_list = function(payload) {
     //console.log(payload);
     payload.list.forEach(function(alert) {

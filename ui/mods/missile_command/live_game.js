@@ -1,39 +1,16 @@
 define([
   'missile_command/panel',
   'missile_command/registry',
-  'missile_command/persist',
-  'missile_command/preview',
   'missile_command/lobby_id',
-], function(panel, registry, persist, preview, lobbyId) {
+], function(panel, registry, lobbyId) {
   "use strict";
 
   var nuke_launcher = '/pa/units/land/nuke_launcher/nuke_launcher.json'
-  //var nuke_launcher = '/pa/units/land/energy_plant/energy_plant.json'
-
-  var attackQueue = []
-  var nextAttacker = function() {
-    if (attackQueue.length > 0) {
-      var attacker = attackQueue.shift()
-      if (attacker.ready()) {
-        api.audio.playSound('/SE/UI/UI_Command_Build')
-      } else {
-        api.audio.playSound('/SE/UI/UI_Alert_metal_low')
-      }
-      attacker.attack()
-    } else {
-      api.audio.playSound('/SE/UI/UI_Command_stop')
-    }
-  }
-
-  var rapidAttack = function() {
-    attackQueue = registry.attackQueue()
-    nextAttacker()
-  }
 
   var checkCommand = function(command, selected) {
     if (command == 'attack' && selected) {
       registry.unready(selected)
-      nextAttacker()
+      //nextAttacker()
     }
   }
 
@@ -41,8 +18,6 @@ define([
 
   model.selection.subscribe(function(payload) {
     if (!payload) {
-      registry.showSelected([])
-      // can't use this to reset attackQueue because we ALWAYS get a null event when changing selection
       return
     }
 
@@ -50,25 +25,6 @@ define([
       model.setCommandIndex(1)
       wantsToAttack = false
     }
-
-    var perfect = false
-    var si = payload.spec_ids
-    if (Object.keys(si).length == 1) {
-      if (si[nuke_launcher]) {
-        if (si[nuke_launcher].length == 1) {
-          registry.register(si[nuke_launcher][0])
-          perfect = true
-        } else {
-          registry.notice(si[nuke_launcher])
-        }
-      }
-    }
-
-    if (!perfect) {
-      attackQueue = []
-    }
-
-    registry.showSelected(si[nuke_launcher])
   })
 
 
