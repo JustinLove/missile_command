@@ -83,11 +83,13 @@ define([
 
   var viewModel = {
     visible: ko.computed(function() {
-      return true
-      //return registry.registry().length > 0 && model.mode() != 'game_over'
+      return registry.registry().length > 0
     }),
     registry: registry.registry,
-    remove: registry.destroyed,
+    remove: function(id) {
+      preview.hide()
+      registry.destroyed(id)
+    },
     open: ko.observable(true),
     toggle: function() { this.open(!this.open()) },
     leave: function() {

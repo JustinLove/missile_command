@@ -1,8 +1,7 @@
 define([
   'missile_command/panel',
-  'missile_command/registry',
   'missile_command/lobby_id',
-], function(panel, registry, lobbyId) {
+], function(panel, lobbyId) {
   "use strict";
 
   var nuke_launcher = '/pa/units/land/nuke_launcher/nuke_launcher.json'
@@ -75,7 +74,7 @@ define([
 
   var viewModel = {
     visible: ko.computed(function() {
-      return registry.registry().length > 0 && model.mode() != 'game_over'
+      return model.mode() != 'game_over'
     }),
   }
 
