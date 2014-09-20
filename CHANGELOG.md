@@ -5,6 +5,7 @@
 - Remove depreciated modinfo fields
 - Convert to panel (supports mod loading in "missile_command")
 - Replace group tracking with select.byIds
+- Remove disconnect hook
 
 ## 1.0.0
 
