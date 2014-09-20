@@ -6,6 +6,7 @@
 - Convert to panel (supports mod loading in "missile_command")
 - Replace group tracking with select.byIds
 - Remove disconnect hook
+- Data stored in localStorage since panel session is transient
 
 ## 1.0.0
 

@@ -11,7 +11,8 @@ missileCommandRequireSetup()
 var missile_command_stub = function() {}
 _.defaults(handlers, {
   selection: missile_command_stub,
-  missile_command_attack: missile_command_stub
+  missile_command_attack: missile_command_stub,
+  missile_command_hello: missile_command_stub
 })
 require(['missile_command/live_game'], function(live_game) {
   "use strict";

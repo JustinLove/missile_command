@@ -7,22 +7,6 @@ define([
 ], function(registry, persist, preview) {
   "use strict";
 
-  var initiateStorage = function() {
-    var lobbyId = ko.observable().extend({ session: 'lobbyId' });
-    console.log('loaded lobbyId', lobbyId())
-
-    if (lobbyId()) {
-      persist.enableStorage(lobbyId(), registry.registry)
-    } else {
-      engine.asyncCall("ubernet.getGameWithPlayer").done(function (data) {
-        data = JSON.parse(data);
-        console.log(data)
-        lobbyId(data.LobbyID)
-        persist.enableStorage(data.LobbyID, registry.registry)
-      })
-    }
-  }
-
   var nuke_launcher = '/pa/units/land/nuke_launcher/nuke_launcher.json'
   //var nuke_launcher = '/pa/units/land/energy_plant/energy_plant.json'
 
@@ -59,6 +43,13 @@ define([
     })
   }
 
+  handlers.missile_command_state = function(payload) {
+    console.log(payload)
+    if (payload.lobbyId) {
+      persist.enableStorage(payload.lobbyId, registry.registry)
+    }
+  }
+
   var viewModel = {
     visible: ko.computed(function() {
       return true
@@ -78,8 +69,8 @@ define([
 
   return {
     ready: function() {
-      // some api methods doesn't exist at load time
-      setTimeout(initiateStorage, 0)
+      console.log('hello')
+      api.Panel.message(api.Panel.parentId, 'missile_command_hello');
     },
     viewModel: viewModel
   }

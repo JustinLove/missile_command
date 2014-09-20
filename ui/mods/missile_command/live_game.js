@@ -3,24 +3,9 @@ define([
   'missile_command/registry',
   'missile_command/persist',
   'missile_command/preview',
-], function(panel, registry, persist, preview) {
+  'missile_command/lobby_id',
+], function(panel, registry, persist, preview, lobbyId) {
   "use strict";
-
-  var initiateStorage = function() {
-    var lobbyId = ko.observable().extend({ session: 'lobbyId' });
-    console.log('loaded lobbyId', lobbyId())
-
-    if (lobbyId()) {
-      persist.enableStorage(lobbyId(), registry.registry)
-    } else {
-      engine.asyncCall("ubernet.getGameWithPlayer").done(function (data) {
-        data = JSON.parse(data);
-        console.log(data)
-        lobbyId(data.LobbyID)
-        persist.enableStorage(data.LobbyID, registry.registry)
-      })
-    }
-  }
 
   var nuke_launcher = '/pa/units/land/nuke_launcher/nuke_launcher.json'
   //var nuke_launcher = '/pa/units/land/energy_plant/energy_plant.json'
@@ -107,6 +92,13 @@ define([
     }),
   }
 
+  handlers.missile_command_hello = function() {
+    console.log('hello', api.panels.missile_command)
+    api.panels.missile_command.message('missile_command_state', {
+      lobbyId: lobbyId()
+    });
+  }
+
   handlers.missile_command_attack = function() {
     if (model.allowedCommands.Attack) {
       model.setCommandIndex(1)
@@ -118,9 +110,6 @@ define([
   return {
     ready: function() {
       panel()
-
-      // some api methods doesn't exist at load time
-      setTimeout(initiateStorage, 0)
     },
     viewModel: viewModel
   }
