@@ -15,6 +15,9 @@
     "live_game": [
       "coui://ui/mods/missile_command/live_game_bootstrap.js"
     ],
+    "live_game_options_bar": [
+      "coui://ui/mods/missile_command/live_game_options_bar.js"
+    ],
     "server_browser": [
       "coui://ui/mods/missile_command/server_browser.js"
     ]
