@@ -71,11 +71,22 @@ define([
     return false
   }
 
-
   var viewModel = {
-    visible: ko.computed(function() {
-      return model.mode() != 'game_over'
-    }),
+    visible: ko.observable(false),
+  }
+
+  model.mode.subscribe(function() {
+    if (model.mode() == 'game_over') {
+      viewModel.visible(false)
+    }
+  })
+
+  viewModel.visible.subscribe(function() {
+    api.panels.options_bar && api.panels.options_bar.message('missile_command_visible', viewModel.visible());
+  })
+
+  model.toggleMissileCommand = function() {
+    viewModel.visible(!viewModel.visible())
   }
 
   handlers.missile_command_hello = function() {

@@ -83,7 +83,7 @@ define([
 
   var viewModel = {
     visible: ko.computed(function() {
-      return registry.registry().length > 0
+      return true
     }),
     registry: registry.registry,
     remove: function(id) {
