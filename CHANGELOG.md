@@ -7,6 +7,8 @@
 - Replace group tracking with select.byIds
 - Remove disconnect hook
 - Data stored in localStorage since panel session is transient
+- Disable Require.js timeout due to longer game load times with default render process limit.
+
 
 ## 1.0.0
 

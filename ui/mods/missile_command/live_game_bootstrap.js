@@ -1,9 +1,10 @@
 console.log('bootstrap')
 // immediately invoked function was causing undefined function error
 var missileCommandRequireSetup = function() {
-  var paths = require.s.contexts._.config.paths
-  paths.missile_command = 'coui://ui/mods/missile_command'
-  paths.text = paths.text || 'coui://ui/mods/missile_command/text'
+  var config = require.s.contexts._.config
+  config.waitSeconds = 0
+  config.paths.missile_command = 'coui://ui/mods/missile_command'
+  config.paths.text = config.paths.text || 'coui://ui/mods/missile_command/text'
 }
 missileCommandRequireSetup()
 
