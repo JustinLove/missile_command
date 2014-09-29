@@ -112,11 +112,15 @@ define([
     }
   }
 
+  var live_game_watch_list = handlers.watch_list
   handlers.watch_list = function(payload) {
     //console.log(payload);
     missileEvents(payload.list.filter(function(alert) {
       return eventSystem.isType(constants.unit_type.Nuke, alert.unit_types)
     }))
+    if (live_game_watch_list) {
+      live_game_watch_list(payload)
+    }
   }
 
   handlers.missile_command_hello = function() {
