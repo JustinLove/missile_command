@@ -82,16 +82,11 @@ define([
   }
 
   var viewModel = {
-    visible: ko.computed(function() {
-      return true
-    }),
     registry: registry.registry,
     remove: function(id) {
       preview.hide()
       registry.destroyed(id)
     },
-    open: ko.observable(true),
-    toggle: function() { this.open(!this.open()) },
     leave: function() {
       preview.hide()
       // prevent all our keys from going to a checkbox or button
