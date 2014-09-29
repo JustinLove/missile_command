@@ -26,6 +26,7 @@ define([
   })
 
 
+  // action left click
   var originalUnitCommand = api.Holodeck.prototype.unitCommand
   api.Holodeck.prototype.unitCommand = function(command, x, y, queue) {
     var selected = model.selection().spec_ids[nuke_launcher]
@@ -33,6 +34,15 @@ define([
       function() {checkCommand(command, selected)})
   }
 
+  // drag command
+  var originalUnitEndCommand = api.Holodeck.prototype.unitEndCommand
+  api.Holodeck.prototype.unitEndCommand = function(command, x, y, queue) {
+    var selected = model.selection().spec_ids[nuke_launcher]
+    return originalUnitEndCommand.apply(this, arguments).success(
+      function() {checkCommand(command, selected)})
+  }
+
+  // right click
   var originalTargetCommand = api.unit.targetCommand
   api.unit.targetCommand = function(command, target, queue) {
     var selected = model.selection().spec_ids[nuke_launcher]
