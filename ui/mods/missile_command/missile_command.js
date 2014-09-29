@@ -29,6 +29,10 @@ define([
     nextAttacker()
   }
 
+  var selectAll = function() {
+    api.getWorldView(0).selectByTypes('add', [nuke_launcher])
+  }
+
   handlers.selection = function(payload) {
     if (!payload) {
       registry.showSelected([])
@@ -94,7 +98,8 @@ define([
       // prevent all our keys from going to a checkbox or button
       document.activeElement.blur()
     },
-    rapidAttack: rapidAttack
+    rapidAttack: rapidAttack,
+    selectAll: selectAll
   }
 
   return {

@@ -14,6 +14,7 @@
       <div class="missile_command">
         <div class="missile_command_cont" data-bind="event: {mouseleave: leave}">
           <input type="button" class="btn_commit"  data-bind="click: rapidAttack" value="ATTACK"/>
+          <input type="button" class="btn_commit"  data-bind="click: selectAll" value="ALL"/>
           <ul data-bind="foreach: registry">
             <li data-bind="css: {missile_selected: selected}, event: {mouseenter: show}">
             <input class="missile_ready" type="checkbox" data-bind="checked: ready">
