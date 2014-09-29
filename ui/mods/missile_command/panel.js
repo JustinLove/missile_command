@@ -4,6 +4,7 @@ define(function() {
       visibility: 'hidden',
       position: 'absolute',
       top: 100,
+      bottom: 100,
       right: 50,
     }).attr({
       src: "coui://ui/mods/missile_command/missile_command.html",
