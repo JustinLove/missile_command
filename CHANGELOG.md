@@ -8,7 +8,9 @@
 - Remove disconnect hook
 - Data stored in localStorage since panel session is transient
 - Disable Require.js timeout due to longer game load times with default render process limit.
-
+- Replace header toggle with option bar icon
+- Add button to select all launchers (for area attack)
+- Set unready state for area attack
 
 ## 1.0.0
 
