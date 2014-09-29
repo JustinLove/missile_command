@@ -56,15 +56,13 @@ define([
     registry.showSelected(si[nuke_launcher])
   }
 
-  handlers.watch_list = function(payload) {
+  handlers.missile_command_events = function(payload) {
     //console.log(payload);
-    payload.list.forEach(function(alert) {
-      if (eventSystem.isType(constants.unit_type.Nuke, alert.unit_types)) {
-        if (alert.watch_type == constants.watch_type.ready) {
-          registry.created(alert.id, {location: alert.location, planet_id: alert.planet_id})
-        } else if (alert.watch_type == constants.watch_type.death) {
-          registry.destroyed(alert.id)
-        }
+    payload.forEach(function(alert) {
+      if (alert.watch_type == constants.watch_type.ready) {
+        registry.created(alert.id, {location: alert.location, planet_id: alert.planet_id})
+      } else if (alert.watch_type == constants.watch_type.death) {
+        registry.destroyed(alert.id)
       }
     })
   }
@@ -73,6 +71,10 @@ define([
     //console.log(payload)
     if (payload.lobbyId) {
       persist.enableStorage(payload.lobbyId, registry.registry)
+    }
+
+    if (payload.pendingEvents) {
+      handlers.missile_command_events(payload.pendingEvents)
     }
   }
 

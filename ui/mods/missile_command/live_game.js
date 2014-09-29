@@ -81,6 +81,17 @@ define([
     }
   })
 
+  var inserted = false
+  var insert = function() {
+    panel(viewModel)
+    inserted = true
+  }
+  viewModel.visible.subscribe(function(value) {
+    if (value && !inserted) {
+      insert()
+    }
+  })
+
   viewModel.visible.subscribe(function() {
     api.panels.options_bar && api.panels.options_bar.message('missile_command_visible', viewModel.visible());
   })
@@ -89,11 +100,32 @@ define([
     viewModel.visible(!viewModel.visible())
   }
 
+  var pendingEvents = []
+  var missileEvents = function(events) {
+    if (events.length < 1) return
+
+    if (api.panels.missile_command) {
+      api.panels.missile_command.message('missile_command_events', events)
+    } else {
+      pendingEvents = pendingEvents.concat(events)
+      viewModel.visible(true)
+    }
+  }
+
+  handlers.watch_list = function(payload) {
+    //console.log(payload);
+    missileEvents(payload.list.filter(function(alert) {
+      return eventSystem.isType(constants.unit_type.Nuke, alert.unit_types)
+    }))
+  }
+
   handlers.missile_command_hello = function() {
     console.log('hello', api.panels.missile_command)
     api.panels.missile_command.message('missile_command_state', {
-      lobbyId: lobbyId()
+      lobbyId: lobbyId(),
+      pendingEvents: pendingEvents
     });
+    pendingEvents = []
   }
 
   handlers.missile_command_attack = function() {
@@ -112,9 +144,7 @@ define([
   }
 
   return {
-    ready: function() {
-      panel(viewModel)
-    },
+    insert: insert,
     viewModel: viewModel
   }
 })
