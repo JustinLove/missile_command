@@ -22,3 +22,7 @@ The "All" button will select all nuke launchers, presumeably for an area attack.
 Pretty much everything related to nuke launcher status is invisible to the UI, so a lot is manual.
 
 The mod has limited state saving.  Launchers will be remembered over refresh and changing scenes, such as settings.
+
+### Additional Credits
+
+- Options bar icon: [Fr33Lancer](https://forums.uberent.com/members/fr33lancer.1947523/)
