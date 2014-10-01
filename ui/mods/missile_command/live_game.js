@@ -85,8 +85,9 @@ define([
     visible: ko.observable(false),
   }
 
-  model.mode.subscribe(function() {
-    if (model.mode() == 'game_over') {
+  model.gameOverState.subscribe(function(state) {
+    if (!state) return
+    if (state.defeated || state.game_over) {
       viewModel.visible(false)
     }
   })
