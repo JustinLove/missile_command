@@ -4,7 +4,12 @@ define([
 ], function(panel, lobbyId) {
   "use strict";
 
-  var nuke_launcher = '/pa/units/land/nuke_launcher/nuke_launcher.json'
+  var base_nuke_launcher = '/pa/units/land/nuke_launcher/nuke_launcher.json'
+  var nuke_launcher = base_nuke_launcher
+
+  model.player.subscribe(function(player) {
+    nuke_launcher = base_nuke_launcher + player.spec_tag
+  })
 
   var checkCommand = function(command, selected) {
     if (command == 'attack' && selected) {
@@ -138,6 +143,7 @@ define([
     console.log('hello', api.panels.missile_command)
     api.panels.missile_command.message('missile_command_state', {
       lobbyId: lobbyId(),
+      spec_tag: model.player().spec_tag,
       pendingEvents: pendingEvents
     });
     pendingEvents = []

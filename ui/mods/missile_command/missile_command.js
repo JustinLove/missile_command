@@ -7,7 +7,8 @@ define([
 ], function(registry, persist, preview) {
   "use strict";
 
-  var nuke_launcher = '/pa/units/land/nuke_launcher/nuke_launcher.json'
+  var base_nuke_launcher = '/pa/units/land/nuke_launcher/nuke_launcher.json'
+  var nuke_launcher = base_nuke_launcher
 
   var attackQueue = []
   var nextAttacker = function() {
@@ -39,6 +40,8 @@ define([
       // can't use this to reset attackQueue because we ALWAYS get a null event when changing selection
       return
     }
+
+    //console.log(payload)
 
     var perfect = false
     var si = payload.spec_ids
@@ -75,6 +78,10 @@ define([
     //console.log(payload)
     if (payload.lobbyId) {
       persist.enableStorage(payload.lobbyId, registry.registry)
+    }
+
+    if (payload.spec_tag) {
+      nuke_launcher = base_nuke_launcher + payload.spec_tag
     }
 
     if (payload.pendingEvents) {
