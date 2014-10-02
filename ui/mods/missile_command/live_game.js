@@ -8,6 +8,7 @@ define([
   var nuke_launcher = base_nuke_launcher
 
   model.player.subscribe(function(player) {
+    if (!player) return
     nuke_launcher = base_nuke_launcher + player.spec_tag
   })
 
@@ -102,9 +103,13 @@ define([
     panel(viewModel)
     inserted = true
   }
-  viewModel.visible.subscribe(function(value) {
-    if (value && !inserted) {
+  viewModel.visible.subscribe(function(visible) {
+    if (visible && !inserted) {
       insert()
+    }
+
+    if (!visible) {
+      model.hideAlertPreview();
     }
   })
 
