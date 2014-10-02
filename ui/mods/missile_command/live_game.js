@@ -133,12 +133,19 @@ define([
     }
   }
 
+  var myMissileEvent = function(alert) {
+    return (
+      (alert.watch_type == constants.watch_type.ready ||
+       alert.watch_type == constants.watch_type.death) && 
+      eventSystem.isType(constants.unit_type.Nuke, alert.unit_types)
+    )
+  }
+
   var live_game_watch_list = handlers.watch_list
   handlers.watch_list = function(payload) {
     //console.log(payload);
-    missileEvents(payload.list.filter(function(alert) {
-      return eventSystem.isType(constants.unit_type.Nuke, alert.unit_types)
-    }))
+    missileEvents(payload.list.filter(myMissileEvent))
+
     if (live_game_watch_list) {
       live_game_watch_list(payload)
     }
