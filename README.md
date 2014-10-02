@@ -13,7 +13,7 @@ Nuke launchers will be registered when they are built.  If you have a crash or o
 - "external site" button jumps to the launcher in the main view.
 - Close "x" button adds a "Remove" button to confirm removing a problem launcher from the list.  Click the "x" again to cancel the remove action without confirming.
 
-The "Attack" button will select one launcher and set attack mode. After firing a nuke, it will be marked as unready, and the next launcher will be selected.  Ready launchers are selected first, and then unready launchers, just in case they were ready and you handn't looked.
+The "Attack" button will select one launcher and set attack mode. After firing a nuke, it will be marked as unready, and the next launcher will be selected.  Ready launchers are selected first, and then unready launchers, just in case they were ready and you handn't looked.  Allow at least a second between clicks - going too fast may cause a click to register as "clear selection", which will interrupt the process.
 
 The "All" button will select all nuke launchers, presumeably for an area attack.
 
