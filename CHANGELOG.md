@@ -12,6 +12,7 @@
 - Add button to select all launchers (for area attack)
 - Set unready state for area attack
 - Handle Galactic War spec_tag
+- Loading indicator for panel
 
 ## 1.0.0
 
