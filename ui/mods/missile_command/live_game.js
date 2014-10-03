@@ -101,6 +101,7 @@ define([
   var inserted = false
   var insert = function() {
     panel(viewModel)
+    api.panels.options_bar && api.panels.options_bar.message('missile_command_loading', true)
     inserted = true
   }
   viewModel.visible.subscribe(function(visible) {
@@ -113,7 +114,7 @@ define([
     }
   })
 
-  viewModel.visible.subscribe(function() {
+  viewModel.visible.subscribe(function(visible) {
     api.panels.options_bar && api.panels.options_bar.message('missile_command_visible', viewModel.visible());
   })
 
@@ -159,6 +160,8 @@ define([
       pendingEvents: pendingEvents
     });
     pendingEvents = []
+
+    api.panels.options_bar && api.panels.options_bar.message('missile_command_loading', false)
   }
 
   handlers.missile_command_attack = function() {
