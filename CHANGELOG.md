@@ -15,6 +15,7 @@ Version 2 essentially restores the original feature-set, rebuilt on top of panel
 - Add button to select all launchers (for area attack)
 - Set unready state for area attack
 - Handle Galactic War spec_tag
+- Add icon to show launcher in pip
 
 ## 1.0.0
 

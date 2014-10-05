@@ -53,6 +53,13 @@ function(preview) {
         api.camera.setZoom('surface')
       }
     },
+    jumpPip: function() {
+      if (this.target()) {
+        var target = this.targetZoom('air')
+        target.holodeck = 'pips[0]'
+        preview.showTarget(target)
+      }
+    },
     remove: function() {
       this.removing(!this.removing())
     }

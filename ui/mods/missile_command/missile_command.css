@@ -61,6 +61,14 @@ body-dock {
   top: 0;
 }
 
+.missile_command_pip {
+  position: absolute;
+  left: 85px;
+  top: 0;
+  background: url(coui://ui/main/game/live_game/img/pip/btn_pip_copy.png) center center no-repeat #000;
+  background-size: 8px;
+}
+
 .missile_command_remove {
   position: absolute;
   right: 0;

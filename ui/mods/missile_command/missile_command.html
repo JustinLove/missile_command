@@ -20,6 +20,7 @@
             <input class="missile_ready" type="checkbox" data-bind="checked: ready">
             <span class="missile_id" data-bind="text: id">id</span>
             <i class="missile_command_jump ui-icon ui-icon-extlink" data-bind="click: jump">show</i>
+            <i class="missile_command_pip ui-icon" data-bind="click: jumpPip, visible: target">pip</i>
             <i class="missile_command_remove ui-icon ui-icon-close" data-bind="click: remove">remove</i>
             </li>
             <li data-bind="visible: removing, event: {mouseenter: show}">
