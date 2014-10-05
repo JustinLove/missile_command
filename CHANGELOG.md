@@ -1,5 +1,7 @@
 ## 2.0.0
 
+Version 2 essentially restores the original feature-set, rebuilt on top of panels and select.byIds
+
 - If unpacked RequireJS is good enough for Galactic War, it's good enough for me.
 - Remove Grunt
 - Remove depreciated modinfo fields
@@ -7,12 +9,12 @@
 - Replace group tracking with select.byIds
 - Remove disconnect hook
 - Data stored in localStorage since panel session is transient
-- Disable Require.js timeout due to longer game load times with default render process limit.
+- Disable Require.js timeout due to longer game load times when using render process limit.
 - Replace header toggle with option bar icon (Thanks to Fr33Lancer for the icon)
+- Loading indicator for panel
 - Add button to select all launchers (for area attack)
 - Set unready state for area attack
 - Handle Galactic War spec_tag
-- Loading indicator for panel
 
 ## 1.0.0
 
