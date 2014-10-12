@@ -1,3 +1,7 @@
+## 2.0.1
+
+- Error in command hook blocked spectator ping
+
 ## 2.0.0
 
 Version 2 essentially restores the original feature-set, rebuilt on top of panels and select.byIds
