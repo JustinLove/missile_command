@@ -11,7 +11,7 @@
     }
   })
   $('.div_ingame_options_bar_cont').prepend(
-  '<div class="btn_ingame_options div_toggle_missile_command">' + 
+  '<div class="btn_ingame_options btn_std_ix div_toggle_missile_command">' + 
       '<a href="#" data-bind="click: toggleMissileCommand">' + 
           '<img height="16" data-bind="attr: { src: missileCommandImage }" />' + 
       '</a>' +

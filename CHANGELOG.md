@@ -1,3 +1,7 @@
+## 2.0.2
+
+- Add option bar button hover effect
+
 ## 2.0.1
 
 - Error in command hook blocked spectator ping
