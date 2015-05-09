@@ -11,7 +11,7 @@ body-dock {
   top: 0;
   right: 0;
   min-height: 75px;
-  min-width: 200px;
+  min-width: 260px;
 }
 
 .dragmode .missile_command_cont {
@@ -39,11 +39,24 @@ body-dock {
   overflow-x: visible;
 }
 
-.missile_command li {
+.missile_command .missile {
+  display: inline-block;
+  width: 60px;
+  height: 60px;
   position: relative;
   border: solid #111 1px;
   padding: 2px;
   margin-bottom: 4px;
+}
+
+.missile_background {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-image: url('coui://ui/main/game/live_game/img/build_bar/units/nuke_launcher.png');
+}
+.missile_ready .missile_background {
+  background-image: url('coui://ui/main/game/live_game/img/build_bar/units/nuke_launcher_ammo.png');
 }
 
 .missile_command .missile_selected {
@@ -61,14 +74,14 @@ body-dock {
 
 .missile_command_jump {
   position: absolute;
-  left: 65px;
-  top: 0;
+  left: 0;
+  bottom: 0;
 }
 
 .missile_command_pip {
   position: absolute;
-  left: 85px;
-  top: 0;
+  right: 0;
+  bottom: 0;
   background: url(coui://ui/main/game/live_game/img/pip/btn_pip_copy.png) center center no-repeat #000;
   background-size: 8px;
 }
@@ -88,3 +101,9 @@ body-dock {
   border-color: #0ff;
 }
 
+.missile_command .confirm-remove {
+  position: relative;
+  border: solid #111 1px;
+  padding: 2px;
+  margin-bottom: 4px;
+}

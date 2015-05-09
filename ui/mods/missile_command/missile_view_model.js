@@ -20,6 +20,9 @@ function(preview) {
       missile.target(target)
       return missile
     },
+    toggle: function() {
+      this.ready(!this.ready())
+    },
     show: function() {
       if (this.target()) {
         preview.showTarget(this.targetZoom('surface'))

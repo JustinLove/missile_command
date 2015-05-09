@@ -1,6 +1,8 @@
 ## 2.1.0
 
 - Window is draggable
+- Visual update with icons (launcher: unready, missile: ready)
+- Right click to toggle ready
 
 ## 2.0.2
 

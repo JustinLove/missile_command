@@ -16,15 +16,14 @@
           <input type="button" class="btn_commit"  data-bind="click: rapidAttack" value="ATTACK"/>
           <input type="button" class="btn_commit"  data-bind="click: selectAll" value="ALL"/>
           <ul data-bind="foreach: registry">
-            <li data-bind="css: {missile_selected: selected}, event: {mouseenter: show}">
-            <input class="missile_ready" type="checkbox" data-bind="checked: ready">
-            <span class="missile_id" data-bind="text: id">id</span>
-            <i class="missile_command_jump ui-icon ui-icon-extlink" data-bind="click: jump">show</i>
-            <i class="missile_command_pip ui-icon" data-bind="click: jumpPip, visible: target">pip</i>
-            <i class="missile_command_remove ui-icon ui-icon-close" data-bind="click: remove">remove</i>
+            <li class="missile" data-bind="css: {missile_selected: selected, missile_ready: ready}, event: {mouseenter: show, contextmenu: toggle}">
+              <div class="missile_background"></div>
+              <i class="missile_command_jump ui-icon ui-icon-extlink" data-bind="click: jump">show</i>
+              <i class="missile_command_pip ui-icon" data-bind="click: jumpPip, visible: target">pip</i>
+              <i class="missile_command_remove ui-icon ui-icon-close" data-bind="click: remove">remove</i>
             </li>
-            <li data-bind="visible: removing, event: {mouseenter: show}">
-            <input type="button" class="btn_commit" data-bind="click: function() {$parent.remove(id)}" value="REMOVE"/>
+            <li class="confirm_remove" data-bind="visible: removing, event: {mouseenter: show}">
+              <input type="button" class="btn_commit" data-bind="click: function() {$parent.remove(id)}" value="REMOVE"/>
             </li>
           </ul>
         </div>
