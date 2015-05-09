@@ -1,3 +1,7 @@
+## 2.1.0
+
+- Window is draggable
+
 ## 2.0.2
 
 - Add option bar button hover effect

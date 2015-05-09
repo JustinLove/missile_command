@@ -11,7 +11,7 @@ define(function() {
       'no-keyboard': true,
       'yield-focus': true,
       fit: "dock-top-left",
-      'data-bind': 'visible: visible'
+      'data-bind': 'visible: visible, style: {top: panelYpx, left: panelXpx}'
     })
     $panel.appendTo('body')
     ko.applyBindings(model, $panel[0])

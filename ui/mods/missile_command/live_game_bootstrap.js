@@ -11,6 +11,7 @@ _.defaults(handlers, {
   missile_command_attack: missile_command_stub,
   missile_command_hello: missile_command_stub,
   missile_command_polite_show_unit: missile_command_stub,
+  missile_command_drag: missile_command_stub,
   watch_list: missile_command_stub
 })
 require(['missile_command/live_game'])

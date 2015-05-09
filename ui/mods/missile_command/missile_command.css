@@ -14,6 +14,10 @@ body-dock {
   min-width: 200px;
 }
 
+.dragmode .missile_command_cont {
+  background-color: #088;
+}
+
 .missile_command {
   font-size: 12px;
   font-family: 'Armata Regular';
