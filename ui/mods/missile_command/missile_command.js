@@ -94,6 +94,55 @@ define([
     nextAttacker()
   }
 
+  var launchersInBox = function(x1, y1, x2, y2) {
+    var left, right, top, bottom
+    if (x1 <= x2) {
+      left = x1
+      right = x2
+    } else {
+      left = x2
+      right = x1
+    }
+    if (y1 <= y2) {
+      top = y1
+      bottom = y2
+    } else {
+      top = y2
+      bottom = y1
+    }
+    return $('.missile').filter(function() {
+      var $el = $(this)
+      var offset = $el.offset()
+      var w = $el.width()
+      var h = $el.height()
+      return !(right < offset.left || left > offset.left + w || bottom < offset.top || top > offset.top + h)
+    })
+  }
+
+  var dragSelectTimer
+  var dragSelectX
+  var dragSelectY
+
+  var dragSelectStart = function(launcher, ev) {
+    dragSelectX = ev.clientX
+    dragSelectY = ev.clientY
+    console.log(launchersInBox(dragSelectX, dragSelectY, dragSelectX, dragSelectY))
+
+    $(document).on('mouseup', dragSelectStop)
+
+    dragSelectTimer = setTimeout(function() {
+    }, 300)
+
+    ev.stopPropagation()
+  }
+
+  var dragSelectStop = function(ev) {
+    console.log(launchersInBox(dragSelectX, dragSelectY, ev.clientX, ev.clientY))
+    clearTimeout(dragSelectTimer)
+    dragSelectTimer = null
+    $(document).off('mouseup', dragSelectStop)
+  }
+
   var viewModel = {
     registry: registry.registry,
     remove: function(id) {
@@ -106,7 +155,8 @@ define([
       document.activeElement.blur()
     },
     rapidAttack: rapidAttack,
-    selectAll: selectAll
+    selectAll: selectAll,
+    dragSelectStart: dragSelectStart,
   }
 
   var dragTimer
