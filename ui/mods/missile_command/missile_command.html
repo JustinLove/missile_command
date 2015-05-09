@@ -16,7 +16,7 @@
           <input type="button" class="btn_commit"  data-bind="click: rapidAttack" value="ATTACK"/>
           <input type="button" class="btn_commit"  data-bind="click: selectAll" value="ALL"/>
           <ul data-bind="foreach: registry">
-            <li class="missile" data-bind="css: {missile_selected: selected, missile_ready: ready}, event: {mouseenter: show, contextmenu: toggle, mousedown: $root.dragSelectStart}">
+            <li class="missile" data-bind="css: {missile_selected: selected, missile_ready: ready}, event: {mouseenter: show, contextmenu: toggle, mousedown: $root.dragSelectStart}, attr: {missileid: id}">
               <div class="missile_background"></div>
               <i class="missile_command_jump ui-icon ui-icon-extlink" data-bind="click: jump">show</i>
               <i class="missile_command_pip ui-icon" data-bind="click: jumpPip, visible: target">pip</i>
@@ -28,6 +28,7 @@
           </ul>
         </div>
       </div>
+      <div id="select_box" data-bind="visible: dragSelectActive"></div>
     </body-dock>
   </body>
 </html>

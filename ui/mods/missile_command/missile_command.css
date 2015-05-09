@@ -18,6 +18,12 @@ body-dock {
   background-color: #088;
 }
 
+#select_box {
+  pointer-events: none;
+  position: absolute;
+  border: solid #0cc 1px;
+}
+
 .missile_command {
   font-size: 12px;
   font-family: 'Armata Regular';

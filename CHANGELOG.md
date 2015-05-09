@@ -3,6 +3,7 @@
 - Window is draggable
 - Visual update with icons (launcher: unready, missile: ready)
 - Right click to toggle ready
+- Box select launchers
 
 ## 2.0.2
 
