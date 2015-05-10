@@ -9,7 +9,9 @@ The Missile Command window can be toggled from the option bar.  It will auto ope
 Nuke launchers will be registered when they are built.  If you have a crash or otherwise miss an event, selecting a launcher will notice it.  (The all button should find unregistered nukes)
 
 - Hover over a launcher to show it in the alert PIP.
-- Check the box if it's ready to fire.  Sorry, the code can't tell you; use the hover to quickly check and update all you launchers.
+- Left-click to select a launcher.
+- Left box select to select multiple launchers.
+- Right-click the launcher if it's ready to fire.  Sorry, the code can't tell you; use the hover to quickly check and update all you launchers.
 - "External site" button jumps to the launcher in the main view.
 - "Copy to PIP" button jumps to the launcher in the the PIP.
 - Close "x" button adds a "Remove" button to confirm removing a problem launcher from the list.  Click the "x" again to cancel the remove action without confirming.
@@ -22,7 +24,7 @@ The "All" button will select all nuke launchers, presumeably for an area attack.
 
 Pretty much everything related to nuke launcher status is invisible to the UI, so a lot is manual.
 
-The mod has limited state saving.  Launchers will be remembered over refresh and changing scenes, such as settings.
+The mod has limited state saving on PlayFab games.
 
 ### Additional Credits
 
