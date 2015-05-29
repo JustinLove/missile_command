@@ -1,9 +1,9 @@
 {
   "author": "wondible",
-  "build": "80462",
+  "build": "82293",
   "category": ["in-game", "ui"],
   "context": "client",
-  "date": "2015/05/10",
+  "date": "2015/05/29",
   "dependencies": [],
   "description": "Provides limited assistance for managing nuke launchers.",
   "display_name": "Missile Command",
@@ -23,5 +23,5 @@
     ]
   },
   "signature": "not yet implemented",
-  "version": "2.1.0"
+  "version": "2.1.1"
 }

@@ -1,3 +1,7 @@
+## 2.1.1
+
+- Game changed required header links circa 82293
+
 ## 2.1.0
 
 - Window is draggable
