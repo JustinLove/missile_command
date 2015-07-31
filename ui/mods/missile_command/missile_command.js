@@ -4,30 +4,11 @@ define([
   'missile_command/preview',
   'missile_command/specs',
   'missile_command/drag_select',
+  'missile_command/attack_queue',
   'coui://ui/main/game/live_game/js/constants.js',
   'coui://ui/main/game/live_game/js/events.js',
-], function(registry, persist, preview, specs, dragSelect) {
+], function(registry, persist, preview, specs, dragSelect, attackQueue) {
   "use strict";
-
-  var attackQueue = []
-  var nextAttacker = function() {
-    if (attackQueue.length > 0) {
-      var attacker = attackQueue.shift()
-      if (attacker.ready()) {
-        api.audio.playSound('/SE/UI/UI_Command_Build')
-      } else {
-        api.audio.playSound('/SE/UI/UI_Alert_metal_low')
-      }
-      attacker.attack()
-    } else {
-      api.audio.playSound('/SE/UI/UI_Command_stop')
-    }
-  }
-
-  var rapidAttack = function() {
-    attackQueue = registry.attackQueue()
-    nextAttacker()
-  }
 
   var selectAll = function() {
     api.getWorldView(0).selectByTypes('add', [specs.nuke_launcher])
@@ -56,7 +37,7 @@ define([
     }
 
     if (!perfect) {
-      attackQueue = []
+      attackQueue.queue = []
     }
 
     registry.showSelected(si[specs.nuke_launcher])
@@ -88,11 +69,6 @@ define([
     }
   }
 
-  handlers.missile_command_attacked = function(selected) {
-    registry.unready(selected)
-    nextAttacker()
-  }
-
   var viewModel = {
     registry: registry.registry,
     remove: function(id) {
@@ -104,7 +80,7 @@ define([
       // prevent all our keys from going to a checkbox or button
       document.activeElement.blur()
     },
-    rapidAttack: rapidAttack,
+    rapidAttack: attackQueue.rapidAttack,
     selectAll: selectAll,
     dragSelectStart: dragSelect.start,
     dragSelectActive: dragSelect.active,
