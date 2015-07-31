@@ -4,6 +4,7 @@ New APIs circa 84871
 
 - Can sometimes automatically report missile ready.
 - Can discover launcher location if it missed the creation event.
+- Can notice unknown launchers on screen, once panel has been activated.
 
 ## 2.1.1
 

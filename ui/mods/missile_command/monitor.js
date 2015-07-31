@@ -20,7 +20,18 @@ define([
     })
   }
 
+  var pollArmy = function() {
+    api.getWorldView(0).getArmyUnits(armyIndex, currentPlanet).then(function(army) {
+      var launchers = army[specs.nuke_launcher]
+      if (launchers) {
+        registry.notice(launchers)
+      }
+    })
+    currentPlanet = (currentPlanet + 1) % numberOfPlanets
+  }
+
   var poll = function() {
+    pollArmy()
     pollLaunchers()
     setTimeout(poll, 5000)
   }
