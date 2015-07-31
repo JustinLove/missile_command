@@ -2,13 +2,11 @@ define([
   'missile_command/registry',
   'missile_command/persist',
   'missile_command/preview',
+  'missile_command/specs',
   'coui://ui/main/game/live_game/js/constants.js',
   'coui://ui/main/game/live_game/js/events.js',
-], function(registry, persist, preview) {
+], function(registry, persist, preview, specs) {
   "use strict";
-
-  var base_nuke_launcher = '/pa/units/land/nuke_launcher/nuke_launcher.json'
-  var nuke_launcher = base_nuke_launcher
 
   var attackQueue = []
   var nextAttacker = function() {
@@ -31,7 +29,7 @@ define([
   }
 
   var selectAll = function() {
-    api.getWorldView(0).selectByTypes('add', [nuke_launcher])
+    api.getWorldView(0).selectByTypes('add', [specs.nuke_launcher])
   }
 
   handlers.selection = function(payload) {
@@ -46,12 +44,12 @@ define([
     var perfect = false
     var si = payload.spec_ids
     if (Object.keys(si).length == 1) {
-      if (si[nuke_launcher]) {
-        if (si[nuke_launcher].length == 1) {
-          registry.register(si[nuke_launcher][0])
+      if (si[specs.nuke_launcher]) {
+        if (si[specs.nuke_launcher].length == 1) {
+          registry.register(si[specs.nuke_launcher][0])
           perfect = true
         } else {
-          registry.notice(si[nuke_launcher])
+          registry.notice(si[specs.nuke_launcher])
         }
       }
     }
@@ -60,7 +58,7 @@ define([
       attackQueue = []
     }
 
-    registry.showSelected(si[nuke_launcher])
+    registry.showSelected(si[specs.nuke_launcher])
   }
 
   handlers.missile_command_events = function(payload) {
@@ -81,7 +79,7 @@ define([
     }
 
     if (payload.spec_tag) {
-      nuke_launcher = base_nuke_launcher + payload.spec_tag
+      specs.nuke_launcher = specs.base_nuke_launcher + player.spec_tag
     }
 
     if (payload.pendingEvents) {

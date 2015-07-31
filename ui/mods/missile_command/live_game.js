@@ -1,15 +1,13 @@
 define([
   'missile_command/panel',
   'missile_command/lobby_id',
-], function(panel, lobbyId) {
+  'missile_command/specs',
+], function(panel, lobbyId, specs) {
   "use strict";
-
-  var base_nuke_launcher = '/pa/units/land/nuke_launcher/nuke_launcher.json'
-  var nuke_launcher = base_nuke_launcher
 
   model.player.subscribe(function(player) {
     if (!player) return
-    nuke_launcher = base_nuke_launcher + player.spec_tag
+    specs.nuke_launcher = specs.base_nuke_launcher + player.spec_tag
   })
 
   var checkCommand = function(command, selected) {
@@ -35,7 +33,7 @@ define([
   // action left click
   var originalUnitCommand = api.Holodeck.prototype.unitCommand
   api.Holodeck.prototype.unitCommand = function(command, x, y, queue) {
-    var selected = model.selection() && model.selection().spec_ids[nuke_launcher]
+    var selected = model.selection() && model.selection().spec_ids[specs.nuke_launcher]
     return originalUnitCommand.apply(this, arguments).success(
       function() {checkCommand(command, selected)})
   }
@@ -43,7 +41,7 @@ define([
   // drag command
   var originalUnitEndCommand = api.Holodeck.prototype.unitEndCommand
   api.Holodeck.prototype.unitEndCommand = function(command, x, y, queue) {
-    var selected = model.selection() && model.selection().spec_ids[nuke_launcher]
+    var selected = model.selection() && model.selection().spec_ids[specs.nuke_launcher]
     return originalUnitEndCommand.apply(this, arguments).success(
       function() {checkCommand(command, selected)})
   }
@@ -51,7 +49,7 @@ define([
   // right click
   var originalTargetCommand = api.unit.targetCommand
   api.unit.targetCommand = function(command, target, queue) {
-    var selected = model.selection() && model.selection().spec_ids[nuke_launcher]
+    var selected = model.selection() && model.selection().spec_ids[specs.nuke_launcher]
     return originalTargetCommand.apply(this, arguments).success(
       function() {checkCommand(command, selected)})
   }
@@ -80,7 +78,7 @@ define([
 
     var si = payload.spec_ids
     if (Object.keys(si).length == 1) {
-      if (si[nuke_launcher] && si[nuke_launcher].length == 1) {
+      if (si[specs.nuke_launcher] && si[specs.nuke_launcher].length == 1) {
         return true
       }
     }
