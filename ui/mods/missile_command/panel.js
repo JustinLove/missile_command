@@ -101,6 +101,9 @@ define(function() {
 
   return {
     insert: insert,
-    viewModel: viewModel
+    viewModel: viewModel,
+    show: function() {
+      viewModel.visible(true)
+    },
   }
 })
