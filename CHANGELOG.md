@@ -1,3 +1,10 @@
+## 3.0.0
+
+New APIs circa 84871
+
+- Can sometimes automatically report missile ready.
+- Can discover launcher location if it missed the creation event.
+
 ## 2.1.1
 
 - Game changed required header links circa 82293

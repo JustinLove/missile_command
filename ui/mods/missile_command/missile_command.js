@@ -6,9 +6,19 @@ define([
   'missile_command/drag_select',
   'missile_command/attack_queue',
   'missile_command/draggable',
+  'missile_command/monitor',
   'coui://ui/main/game/live_game/js/constants.js',
   'coui://ui/main/game/live_game/js/events.js',
-], function(registry, persist, preview, specs, dragSelect, attackQueue, draggable) {
+], function(
+  registry,
+  persist,
+  preview,
+  specs,
+  dragSelect,
+  attackQueue,
+  draggable,
+  monitor
+) {
   "use strict";
 
   handlers.selection = function(payload) {
@@ -64,6 +74,8 @@ define([
     if (payload.pendingEvents) {
       handlers.missile_command_events(payload.pendingEvents)
     }
+
+    monitor.start(payload.armyIndex, payload.numberOfPlanets)
   }
 
   var viewModel = {

@@ -8,10 +8,12 @@ The Missile Command window can be toggled from the option bar.  It will auto ope
 
 Nuke launchers will be registered when they are built.  If you have a crash or otherwise miss an event, selecting a launcher will notice it.  (The all button should find unregistered nukes)
 
+The mod has a limited ability to monitor missile state.  Technically, all we can see is whether the launcher is building something or not; most of the time "not building" means "missile ready", but obviously stopping the factory will look the same.  Monitoring only works for launchers that are currently visible, so you may need to pass over the hover previews periodically.
+
 - Hover over a launcher to show it in the alert PIP.
 - Left-click to select a launcher.
 - Left box select to select multiple launchers.
-- Right-click the launcher if it's ready to fire.  Sorry, the code can't tell you; use the hover to quickly check and update all you launchers.
+- Right-click the launcher if it's ready to fire.
 - "External site" button jumps to the launcher in the main view.
 - "Copy to PIP" button jumps to the launcher in the the PIP.
 - Close "x" button adds a "Remove" button to confirm removing a problem launcher from the list.  Click the "x" again to cancel the remove action without confirming.

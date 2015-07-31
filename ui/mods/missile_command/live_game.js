@@ -17,6 +17,8 @@ define([
     console.log('hello', api.panels.missile_command)
     api.panels.missile_command.message('missile_command_state', {
       lobbyId: lobbyId(),
+      armyIndex: model.originalArmyIndex(),
+      planets: model.celestialViewModels().length - 1, // -1: includes sun
       spec_tag: model.player().spec_tag,
       pendingEvents: alerts.pendingEvents
     });

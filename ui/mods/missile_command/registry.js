@@ -28,6 +28,13 @@ define(['missile_command/missile_view_model'], function(missileViewModel) {
     destroyed: function(id) {
       registry.remove(function(m) {return m.id == id})
     },
+    update: function(id, ready, target) {
+      var launcher = _.find(registry(), function(m) {return m.id == id})
+      if (launcher) {
+        launcher.ready(ready)
+        launcher.target(target)
+      }
+    },
     unready: function(ids) {
       if (!ids || ids.length < 1) return
 
@@ -52,6 +59,9 @@ define(['missile_command/missile_view_model'], function(missileViewModel) {
       _.forEach(registry(), function(m) {
         m.selected(ids.indexOf(m.id) != -1)
       })
+    },
+    ids: function() {
+      return registry().map(function(m) {return m.id})
     },
   }
 })
