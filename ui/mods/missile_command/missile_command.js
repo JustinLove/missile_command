@@ -11,10 +11,6 @@ define([
 ], function(registry, persist, preview, specs, dragSelect, attackQueue, draggable) {
   "use strict";
 
-  var selectAll = function() {
-    api.getWorldView(0).selectByTypes('add', [specs.nuke_launcher])
-  }
-
   handlers.selection = function(payload) {
     if (!payload) {
       registry.showSelected([])
@@ -82,7 +78,9 @@ define([
       document.activeElement.blur()
     },
     rapidAttack: attackQueue.rapidAttack,
-    selectAll: selectAll,
+    selectAll: function() {
+      api.getWorldView(0).selectByTypes('add', [specs.nuke_launcher])
+    },
     dragSelectStart: dragSelect.start,
     dragSelectActive: dragSelect.active,
   }
