@@ -5,9 +5,10 @@ define([
   'missile_command/specs',
   'missile_command/drag_select',
   'missile_command/attack_queue',
+  'missile_command/draggable',
   'coui://ui/main/game/live_game/js/constants.js',
   'coui://ui/main/game/live_game/js/events.js',
-], function(registry, persist, preview, specs, dragSelect, attackQueue) {
+], function(registry, persist, preview, specs, dragSelect, attackQueue, draggable) {
   "use strict";
 
   var selectAll = function() {
@@ -86,28 +87,10 @@ define([
     dragSelectActive: dragSelect.active,
   }
 
-  var dragTimer
-
-  var startDragging = function() {
-    $(document).on('mouseup', stopDragging)
-
-    dragTimer = setTimeout(function() {
-      api.Panel.message(api.Panel.parentId, 'missile_command_drag');
-      $('body').addClass('dragmode')
-    }, 300)
-  }
-
-  var stopDragging = function(ev) {
-    clearTimeout(dragTimer)
-    dragTimer = null
-    $(document).off('mouseup', stopDragging)
-    $('body').removeClass('dragmode')
-  }
-
   return {
     ready: function() {
       console.log('hello')
-      $('.missile_command').on('mousedown', startDragging)
+      $('.missile_command').on('mousedown', draggable.startDragging)
       api.Panel.message(api.Panel.parentId, 'missile_command_hello');
     },
     viewModel: viewModel
