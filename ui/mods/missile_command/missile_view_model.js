@@ -1,5 +1,5 @@
-define(['missile_command/preview'],
-function(preview) {
+define(['missile_command/preview', 'missile_command/monitor'],
+function(preview, monitor) {
   return {
     clone: function(id) {
       var missile = Object.create(this)
@@ -26,6 +26,10 @@ function(preview) {
       } else {
         preview.showUnit(this.id)
       }
+      var my = this
+      setTimeout(function() {
+        monitor.ping(my)
+      }, 500)
     },
     hide: function() {
       preview.hide()

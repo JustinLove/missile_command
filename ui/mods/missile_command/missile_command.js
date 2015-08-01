@@ -75,7 +75,7 @@ define([
       handlers.missile_command_events(payload.pendingEvents)
     }
 
-    monitor.start(payload.armyIndex, payload.planets)
+    monitor.start(registry, payload.armyIndex, payload.planets)
   }
 
   var viewModel = {
