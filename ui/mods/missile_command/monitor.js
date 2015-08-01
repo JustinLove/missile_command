@@ -5,7 +5,7 @@ define([
 
   var registry = {}
   var armyIndex = 0
-  var numberOfPlanets = 1
+  var planetIds = []
   var currentPlanet = 0
 
   var pollArmy = function() {
@@ -15,7 +15,7 @@ define([
         registry.notice(launchers)
       }
     })
-    currentPlanet = (currentPlanet + 1) % numberOfPlanets
+    currentPlanet = (currentPlanet + 1) % planetIds.length
   }
 
   var pollLaunchers = function() {
@@ -23,7 +23,7 @@ define([
     api.getWorldView(0).getUnitState(ids).then(function(states) {
       states.forEach(function(state, i) {
         registry.update(ids[i], !state.build_target, {
-          planet_id: state.planet,
+          planet_id: planetIds[state.planet],
           location: state.pos,
         })
       })
@@ -35,7 +35,7 @@ define([
       var state = states[0]
       launcher.ready(!state.build_target)
       launcher.target({
-        planet_id: state.planet,
+        planet_id: planetIds[state.planet],
         location: state.pos,
       })
     })
@@ -48,10 +48,10 @@ define([
   }
 
   return {
-    start: function(reg, ai, np) {
+    start: function(reg, ai, planets) {
       registry = reg
       armyIndex = ai
-      numberOfPlanets = np
+      planetIds = planets
       poll()
     },
     ping: ping,
