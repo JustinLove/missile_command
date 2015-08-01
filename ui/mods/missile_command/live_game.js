@@ -1,11 +1,10 @@
 define([
   'missile_command/panel',
-  'missile_command/lobby_id',
   'missile_command/specs',
   'missile_command/alerts',
   'missile_command/attack_tracking',
   'missile_command/preview_window',
-], function(panel, lobbyId, specs, alerts) {
+], function(panel, specs, alerts) {
   "use strict";
 
   model.player.subscribe(function(player) {
@@ -16,7 +15,6 @@ define([
   handlers.missile_command_hello = function() {
     console.log('hello', api.panels.missile_command)
     api.panels.missile_command.message('missile_command_state', {
-      lobbyId: lobbyId(),
       armyIndex: model.originalArmyIndex(),
       planets: model.celestialViewModels().length - 1, // -1: includes sun
       spec_tag: model.player().spec_tag,

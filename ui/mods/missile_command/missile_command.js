@@ -1,6 +1,5 @@
 define([
   'missile_command/registry',
-  'missile_command/persist',
   'missile_command/preview',
   'missile_command/specs',
   'missile_command/drag_select',
@@ -11,7 +10,6 @@ define([
   'coui://ui/main/game/live_game/js/events.js',
 ], function(
   registry,
-  persist,
   preview,
   specs,
   dragSelect,
@@ -63,10 +61,6 @@ define([
 
   handlers.missile_command_state = function(payload) {
     //console.log(payload)
-    if (payload.lobbyId) {
-      persist.enableStorage(payload.lobbyId, registry.registry)
-    }
-
     if (payload.spec_tag) {
       specs.nuke_launcher = specs.base_nuke_launcher + player.spec_tag
     }

@@ -25,8 +25,6 @@ The "All" button will select all nuke launchers, presumeably for an area attack.
 
 Technically, all we can see is whether the launcher is building something or not; most of the time "not building" means "missile ready", but obviously stopping the factory will look the same.  Monitoring only works for launchers that are currently visible, so you may need to pass over the hover previews periodically.
 
-The mod has limited state saving on PlayFab games.
-
 ### Additional Credits
 
 - Options bar icon: [Fr33Lancer](https://forums.uberent.com/members/fr33lancer.1947523/)
