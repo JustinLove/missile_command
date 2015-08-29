@@ -1,3 +1,7 @@
+## 3.0.1
+
+- Fix icon paths circa titans
+
 ## 3.0.0
 
 New APIs circa 84871
