@@ -22,7 +22,7 @@ define([
     var ids = registry.ids()
     api.getWorldView(0).getUnitState(ids).then(function(states) {
       states.forEach(function(state, i) {
-        registry.update(ids[i], !state.build_target, {
+        registry.update(ids[i], !state.built_frac && !state.build_target, {
           planet_id: planetIds[state.planet],
           location: state.pos,
         })
