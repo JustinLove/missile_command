@@ -9,7 +9,7 @@
   "display_name": "Missile Command",
   "forum": "https://forums.uberent.com/threads/rel-missile-command-2-0-2.58542/",
   "identifier": "com.wondible.pa.missile_command",
-  "icon": "http://pamods.github.io/icons/missile_command.png",
+  "icon": "http://wondible.com/pa/icons/missile_command_i2.png",
   "priority": 100,
   "scenes": {
     "live_game": [
