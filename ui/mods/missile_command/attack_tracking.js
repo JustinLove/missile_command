@@ -26,24 +26,27 @@ define([
   var originalUnitCommand = api.Holodeck.prototype.unitCommand
   api.Holodeck.prototype.unitCommand = function(command, x, y, queue) {
     var selected = model.selection() && model.selection().spec_ids[specs.nuke_launcher]
-    return originalUnitCommand.apply(this, arguments).success(
-      function() {checkCommand(command, selected)})
+    var promise = originalUnitCommand.apply(this, arguments)
+    promise.then(function() {checkCommand(command, selected)})
+    return promise
   }
 
   // drag command
   var originalUnitEndCommand = api.Holodeck.prototype.unitEndCommand
   api.Holodeck.prototype.unitEndCommand = function(command, x, y, queue) {
     var selected = model.selection() && model.selection().spec_ids[specs.nuke_launcher]
-    return originalUnitEndCommand.apply(this, arguments).success(
-      function() {checkCommand(command, selected)})
+    var promise = originalUnitEndCommand.apply(this, arguments)
+    promise.then(function() {checkCommand(command, selected)})
+    return promise
   }
 
   // right click
   var originalTargetCommand = api.unit.targetCommand
   api.unit.targetCommand = function(command, target, queue) {
     var selected = model.selection() && model.selection().spec_ids[specs.nuke_launcher]
-    return originalTargetCommand.apply(this, arguments).success(
-      function() {checkCommand(command, selected)})
+    var promise = originalTargetCommand.apply(this, arguments)
+    promise.then(function() {checkCommand(command, selected)})
+    return promise
   }
 
   handlers.missile_command_attack = function() {

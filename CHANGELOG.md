@@ -1,3 +1,7 @@
+## 3.0.3
+
+- Small deoptimization to support non-promises from Cover the Line
+
 ## 3.0.2
 
 - Launchers under construction should not be shown as ready
