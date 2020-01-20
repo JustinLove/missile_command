@@ -1,6 +1,7 @@
 ## 3.0.4
 
 - Fix registration of first launcher built when window is closed
+- Update preview pip api
 
 ## 3.0.3
 
