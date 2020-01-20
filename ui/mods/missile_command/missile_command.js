@@ -93,7 +93,7 @@ define([
 
   return {
     ready: function() {
-      console.log('hello')
+      //console.log('hello')
       $('.missile_command').on('mousedown', draggable.startDragging)
       api.Panel.message(api.Panel.parentId, 'missile_command_hello');
     },

@@ -1,3 +1,7 @@
+## 3.0.4
+
+- Fix registration of first launcher built when window is closed
+
 ## 3.0.3
 
 - Small deoptimization to support non-promises from Cover the Line

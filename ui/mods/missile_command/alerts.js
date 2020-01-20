@@ -10,7 +10,9 @@ define([
     if (api.panels.missile_command) {
       api.panels.missile_command.message('missile_command_events', events)
     } else {
-      pendingEvents = pendingEvents.concat(events)
+      events.forEach(function(event) {
+        pendingEvents.push(event)
+      })
       panel.show()
     }
   }
