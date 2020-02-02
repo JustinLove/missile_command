@@ -1,3 +1,7 @@
+## 3.0.5
+
+- Fix typo
+
 ## 3.0.4
 
 - Fix registration of first launcher built when window is closed

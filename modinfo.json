@@ -3,7 +3,7 @@
   "build": "113953",
   "category": ["in-game", "ui"],
   "context": "client",
-  "date": "2019/01/20",
+  "date": "2020/02/02",
   "dependencies": [],
   "description": "Provides limited assistance for managing nuke launchers.",
   "display_name": "Missile Command",
@@ -20,5 +20,5 @@
     ]
   },
   "signature": "not yet implemented",
-  "version": "3.0.4"
+  "version": "3.0.5"
 }
